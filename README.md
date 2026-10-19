@@ -11,7 +11,7 @@
 A Neovim and LazyVim port of John Papa's
 [Winter is Coming](https://github.com/johnpapa/vscode-winteriscoming) VS Code
 
-![preview](extras/preview.png)
+![preview](images/winter-is-coming-social-preview.png)
 
 ## Styles
 
