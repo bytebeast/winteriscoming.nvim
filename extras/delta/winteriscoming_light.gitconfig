@@ -1,0 +1,30 @@
+# Winter is Coming Light for git-delta.
+# 1. Install the bat theme from extras/bat (delta uses bat's themes).
+# 2. Add to ~/.gitconfig:
+#      [include]
+#          path = /path/to/this/file
+#      [delta]
+#          features = winteriscoming_light
+
+[delta "winteriscoming_light"]
+    syntax-theme = winteriscoming_light
+    dark = false
+    minus-style = syntax "#f9dcdc"
+    minus-non-emph-style = syntax "#f9dcdc"
+    minus-emph-style = syntax "#f2b5b5"
+    plus-style = syntax "#cee4d4"
+    plus-non-emph-style = syntax "#cee4d4"
+    plus-emph-style = syntax "#b8d8c0"
+    line-numbers-minus-style = "#b31d28"
+    line-numbers-plus-style = "#22863a"
+    line-numbers-zero-style = "#599edb"
+    line-numbers-left-style = "#2f86d2"
+    line-numbers-right-style = "#2f86d2"
+    file-style = "#2f86d2" bold
+    file-decoration-style = "#2f86d2" ul
+    hunk-header-style = file line-number syntax
+    hunk-header-decoration-style = "#2f86d2" box
+    hunk-header-line-number-style = "#b05f0a"
+    hunk-header-file-style = "#207bb8"
+    commit-decoration-style = "#2f86d2" box
+    blame-palette = "#ffffff #f3f3f3 #e3e3e3"

@@ -1,0 +1,23 @@
+{
+  "background": "#ffffff",
+  "black": "#011627",
+  "blue": "#236ebf",
+  "brightBlack": "#403f53",
+  "brightBlue": "#4e8cdf",
+  "brightCyan": "#00bcd4",
+  "brightGreen": "#49d0b0",
+  "brightPurple": "#b15a91",
+  "brightRed": "#f76c6c",
+  "brightWhite": "#403f53",
+  "brightYellow": "#e7c244",
+  "cursorColor": "#2f86d2",
+  "cyan": "#0097a7",
+  "foreground": "#7e8993",
+  "green": "#08916a",
+  "name": "Winter is Coming Light",
+  "purple": "#7c4dff",
+  "red": "#de3d3b",
+  "selectionBackground": "#cee1f0",
+  "white": "#7e8993",
+  "yellow": "#c5a332"
+}

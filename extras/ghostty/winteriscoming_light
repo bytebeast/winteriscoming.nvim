@@ -1,0 +1,25 @@
+# Winter is Coming Light
+# upstream: https://github.com/johnpapa/vscode-winteriscoming
+palette = 0=#011627
+palette = 1=#de3d3b
+palette = 2=#08916a
+palette = 3=#c5a332
+palette = 4=#236ebf
+palette = 5=#7c4dff
+palette = 6=#0097a7
+palette = 7=#7e8993
+palette = 8=#403f53
+palette = 9=#f76c6c
+palette = 10=#49d0b0
+palette = 11=#e7c244
+palette = 12=#4e8cdf
+palette = 13=#b15a91
+palette = 14=#00bcd4
+palette = 15=#403f53
+
+background = #ffffff
+foreground = #7e8993
+cursor-color = #2f86d2
+cursor-text = #ffffff
+selection-background = #cee1f0
+selection-foreground = #011627

@@ -1,0 +1,62 @@
+# Winter is Coming Light
+# upstream: https://github.com/johnpapa/vscode-winteriscoming
+
+[colors.primary]
+background = "#ffffff"
+foreground = "#7e8993"
+
+[colors.cursor]
+cursor = "#2f86d2"
+text = "#ffffff"
+
+[colors.selection]
+background = "#cee1f0"
+text = "#011627"
+
+[colors.search.matches]
+background = "#d8cded"
+foreground = "#011627"
+
+[colors.search.focused_match]
+background = "#9a6a00"
+foreground = "#ffffff"
+
+[colors.footer_bar]
+background = "#f3f3f3"
+foreground = "#37567c"
+
+[colors.hints.start]
+background = "#0784a6"
+foreground = "#ffffff"
+
+[colors.hints.end]
+background = "#e3e3e3"
+foreground = "#0784a6"
+
+[colors.normal]
+black = "#011627"
+red = "#de3d3b"
+green = "#08916a"
+yellow = "#c5a332"
+blue = "#236ebf"
+magenta = "#7c4dff"
+cyan = "#0097a7"
+white = "#7e8993"
+
+[colors.bright]
+black = "#403f53"
+red = "#f76c6c"
+green = "#49d0b0"
+yellow = "#e7c244"
+blue = "#4e8cdf"
+magenta = "#b15a91"
+cyan = "#00bcd4"
+white = "#403f53"
+
+[[colors.indexed_colors]]
+index = 16
+color = "#da5221"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#f76c6c"

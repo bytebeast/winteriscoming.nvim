@@ -1,0 +1,180 @@
+---@meta
+-- Type definitions for lua-language-server. Not loaded at runtime.
+
+---@alias winteriscoming.Style "blue"|"black"|"light"
+---@alias winteriscoming.BgStyle "dark"|"transparent"|"normal"
+
+---@class winteriscoming.Highlight: vim.api.keyset.highlight
+---@field style? vim.api.keyset.highlight
+
+---@alias winteriscoming.Highlights table<string, winteriscoming.Highlight|string>
+
+---@class winteriscoming.Styles
+---@field comments? vim.api.keyset.highlight
+---@field keywords? vim.api.keyset.highlight
+---@field functions? vim.api.keyset.highlight
+---@field variables? vim.api.keyset.highlight
+---@field properties? vim.api.keyset.highlight
+---@field attributes? vim.api.keyset.highlight decorators and tag attributes
+---@field parameters? vim.api.keyset.highlight
+---@field types? vim.api.keyset.highlight
+---@field strings? vim.api.keyset.highlight
+---@field operators? vim.api.keyset.highlight
+---@field sidebars? winteriscoming.BgStyle
+---@field floats? winteriscoming.BgStyle
+
+---@class winteriscoming.Config
+---@field style? winteriscoming.Style
+---@field light_style? winteriscoming.Style
+---@field transparent? boolean
+---@field terminal_colors? boolean
+---@field italics? boolean master switch for every italic
+---@field bold? boolean master switch for every bold
+---@field styles? winteriscoming.Styles
+---@field bright_line_numbers? boolean
+---@field faithful? boolean exact VS Code values instead of this port's adjustments
+---@field dim_inactive? boolean
+---@field lualine_bold? boolean
+---@field on_colors? fun(colors: winteriscoming.ColorScheme)
+---@field on_highlights? fun(highlights: winteriscoming.Highlights, colors: winteriscoming.ColorScheme)
+---@field cache? boolean
+---@field plugins? table<string, boolean|{enabled: boolean}>
+
+---@class winteriscoming.Syntax
+---@field comment string
+---@field keyword string
+---@field operator string
+---@field storage string
+---@field builtin_var string
+---@field func string
+---@field method string
+---@field func_builtin string
+---@field constructor string
+---@field param string
+---@field variable string
+---@field property string
+---@field field_decl string
+---@field field string
+---@field type string
+---@field type_builtin string
+---@field inherited string
+---@field string string
+---@field docstring string
+---@field escape string
+---@field regexp string
+---@field template string
+---@field number string
+---@field boolean string
+---@field constant string
+---@field constant_builtin string
+---@field attribute string
+---@field tag string
+---@field tag_attribute string
+---@field punctuation string
+---@field delimiter string
+---@field module string
+---@field label string
+---@field json_key string
+---@field heading string
+---@field md_bold string
+---@field md_italic string
+---@field md_code string
+---@field md_link string
+---@field md_link_text string
+---@field md_quote string
+---@field md_list string
+---@field md_inserted string
+---@field md_deleted string
+
+---@class winteriscoming.Palette
+---@field bg string
+---@field bg_dark string
+---@field bg_darker string
+---@field bg_highlight string
+---@field bg_widget string
+---@field bg_input string
+---@field bg_visual string
+---@field bg_inlay string
+---@field bg_select string
+---@field fg string
+---@field fg_light string
+---@field fg_bright string
+---@field fg_dark string
+---@field fg_muted string
+---@field fg_gutter string
+---@field comment string
+---@field comment_vscode string
+---@field dark3 string
+---@field dark5 string
+---@field border string
+---@field blue string
+---@field blue_deep string
+---@field ice string
+---@field sky string
+---@field azure string
+---@field frost string
+---@field periwinkle string
+---@field steel string
+---@field glacier string
+---@field mist string
+---@field slate string
+---@field cyan string
+---@field bold_blue string
+---@field lavender string
+---@field purple string
+---@field violet string
+---@field indigo string
+---@field magenta string
+---@field pink string
+---@field rose string
+---@field plum string
+---@field cream string
+---@field gold string
+---@field amber string
+---@field ember string
+---@field mint string
+---@field green string
+---@field green_bright string
+---@field lime string
+---@field moss string
+---@field teal string
+---@field aqua string
+---@field jade string
+---@field seafoam string
+---@field pale string
+---@field red string
+---@field red_light string
+---@field coral string
+---@field git {add: string, change: string, delete: string, untracked: string, ignore?: string}
+---@field terminal table<string, string>
+---@field syntax winteriscoming.Syntax
+---@field vscode? {syntax?: table<string, string>, ui?: table<string, string>}
+
+---@class winteriscoming.ColorScheme: winteriscoming.Palette
+---@field none "NONE"
+---@field style winteriscoming.Style
+---@field is_light boolean
+---@field on_accent string text on saturated accents
+---@field black string
+---@field diff {add: string, delete: string, change: string, text: string}
+---@field border_highlight string
+---@field line_nr string
+---@field line_nr_cursor string
+---@field bg_popup string
+---@field bg_statusline string
+---@field bg_sidebar string
+---@field bg_float string
+---@field fg_sidebar string
+---@field fg_float string
+---@field bg_search string
+---@field bg_cursearch string
+---@field indent_scope string
+---@field label string
+---@field prompt string
+---@field error string
+---@field warning string
+---@field info string
+---@field hint string
+---@field ok string
+---@field todo string
+---@field rainbow string[]

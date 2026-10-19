@@ -1,0 +1,23 @@
+{
+  "background": "#282822",
+  "black": "#282822",
+  "blue": "#219fd5",
+  "brightBlack": "#5f7e97",
+  "brightBlue": "#82aaff",
+  "brightCyan": "#7fdbca",
+  "brightGreen": "#addb67",
+  "brightPurple": "#c792ea",
+  "brightRed": "#ef9a9a",
+  "brightWhite": "#ffffff",
+  "brightYellow": "#ffcb6b",
+  "cursorColor": "#219fd5",
+  "cyan": "#80cbc4",
+  "foreground": "#d6deeb",
+  "green": "#22da6e",
+  "name": "Winter is Coming Dark Black",
+  "purple": "#c792ea",
+  "red": "#ef5350",
+  "selectionBackground": "#2a4258",
+  "white": "#d6deeb",
+  "yellow": "#f7ecb5"
+}

@@ -1,0 +1,25 @@
+# Winter is Coming Dark Blue
+# upstream: https://github.com/johnpapa/vscode-winteriscoming
+palette = 0=#011627
+palette = 1=#ef5350
+palette = 2=#22da6e
+palette = 3=#f7ecb5
+palette = 4=#219fd5
+palette = 5=#c792ea
+palette = 6=#80cbc4
+palette = 7=#d6deeb
+palette = 8=#5f7e97
+palette = 9=#ef9a9a
+palette = 10=#addb67
+palette = 11=#ffcb6b
+palette = 12=#82aaff
+palette = 13=#c792ea
+palette = 14=#7fdbca
+palette = 15=#ffffff
+
+background = #011627
+foreground = #d6deeb
+cursor-color = #219fd5
+cursor-text = #011627
+selection-background = #103362
+selection-foreground = #eeefff
