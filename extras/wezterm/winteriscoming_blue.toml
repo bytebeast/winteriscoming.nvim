@@ -1,0 +1,45 @@
+# Winter is Coming Dark Blue
+# upstream: https://github.com/johnpapa/vscode-winteriscoming
+# Copy to ~/.config/wezterm/colors/ and set `config.color_scheme = "Winter is Coming Dark Blue"`
+[colors]
+foreground = "#d6deeb"
+background = "#011627"
+cursor_bg = "#219fd5"
+cursor_border = "#219fd5"
+cursor_fg = "#011627"
+selection_bg = "#103362"
+selection_fg = "#eeefff"
+split = "#197daa"
+compose_cursor = "#f78c6c"
+scrollbar_thumb = "#0b2942"
+ansi = ["#011627", "#ef5350", "#22da6e", "#f7ecb5", "#219fd5", "#c792ea", "#80cbc4", "#d6deeb"]
+brights = ["#5f7e97", "#ef9a9a", "#addb67", "#ffcb6b", "#82aaff", "#c792ea", "#7fdbca", "#ffffff"]
+
+[colors.tab_bar]
+inactive_tab_edge = "#010e1a"
+background = "#000a11"
+
+[colors.tab_bar.active_tab]
+fg_color = "#000a11"
+bg_color = "#219fd5"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#5f7e97"
+bg_color = "#010e1a"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#d6deeb"
+bg_color = "#0b2942"
+
+[colors.tab_bar.new_tab]
+fg_color = "#5f7e97"
+bg_color = "#000a11"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#219fd5"
+bg_color = "#010e1a"
+
+[metadata]
+aliases = []
+author = "winteriscoming.nvim"
+name = "Winter is Coming Dark Blue"

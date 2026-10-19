@@ -1,0 +1,159 @@
+*winteriscoming.txt*      Winter is Coming colorscheme for Neovim
+
+==============================================================================
+CONTENTS                                             *winteriscoming-contents*
+
+  1. Introduction ........................ |winteriscoming-intro|
+  2. Styles .............................. |winteriscoming-styles|
+  3. Setup ............................... |winteriscoming-setup|
+  4. Options ............................. |winteriscoming-options|
+  5. Overriding colors ................... |winteriscoming-overrides|
+  6. Plugin integrations ................. |winteriscoming-plugins|
+  7. Lualine and bufferline .............. |winteriscoming-lualine|
+  8. Extras .............................. |winteriscoming-extras|
+
+==============================================================================
+1. INTRODUCTION                                         *winteriscoming-intro*
+
+A port of John Papa's Winter is Coming theme for VS Code, with Treesitter,
+LSP semantic tokens, and highlights for many plugins. Integrations load
+automatically for the plugins lazy.nvim has installed.
+
+==============================================================================
+2. STYLES                                              *winteriscoming-styles*
+
+  winteriscoming-blue      Dark Blue: the signature navy (`#011627`)
+  winteriscoming-black     Dark Black: charcoal (`#282822`)
+  winteriscoming-light     Light: white, with the original light mapping
+  winteriscoming           your `style`, or `light_style` when
+                           'background' is "light"
+
+Changing 'background' after loading switches between your dark and light
+style.
+
+==============================================================================
+3. SETUP                                                *winteriscoming-setup*
+
+With LazyVim: >lua
+  return {
+    { "winteriscoming.nvim", lazy = false, priority = 1000, opts = {} },
+    { "LazyVim/LazyVim", opts = { colorscheme = "winteriscoming" } },
+  }
+<
+Without LazyVim: >lua
+  require("winteriscoming").setup({ style = "blue" })
+  vim.cmd.colorscheme("winteriscoming")
+<
+==============================================================================
+4. OPTIONS                                            *winteriscoming-options*
+
+All options with their defaults: >lua
+  require("winteriscoming").setup({
+    style = "blue",          -- "blue", "black" or "light"
+    light_style = "light",   -- used when 'background' is "light"
+    transparent = false,     -- don't set the editor background
+    terminal_colors = true,  -- set g:terminal_color_*
+    italics = true,          -- false drops every italic
+    bold = true,             -- false drops every bold
+    styles = {
+      comments = { italic = true }, keywords = { italic = true },
+      functions = {}, variables = {},
+      properties = {}, attributes = {}, parameters = {},
+      types = {}, strings = {}, operators = {},
+      sidebars = "dark",     -- "dark", "transparent" or "normal"
+      floats = "dark",       -- "dark", "transparent" or "normal"
+    },
+    bright_line_numbers = false,
+    faithful = false,
+    dim_inactive = false,
+    lualine_bold = false,
+    on_colors = function(colors) end,
+    on_highlights = function(highlights, colors) end,
+    cache = true,
+    plugins = { all = package.loaded.lazy == nil, auto = true },
+  })
+<
+                                              *winteriscoming-opt-italics*
+italics ~
+  Master switch. When false, no group is italic, whatever `styles` says.
+
+                                               *winteriscoming-opt-styles*
+styles ~
+  Attributes per syntax category; any attr-list accepted by
+  |nvim_set_hl()|. Comments and keywords are italic by default. The VS Code
+  theme italicizes much more; to get that back: >lua
+    styles = {
+      functions = { italic = true },
+      variables = { italic = true }, properties = { italic = true },
+      attributes = { italic = true },
+    }
+<
+                                   *winteriscoming-opt-bright_line_numbers*
+bright_line_numbers ~
+  VS Code paints every line number winter blue. By default only the
+  current line is bright; set to true for the VS Code look.
+
+                                             *winteriscoming-opt-faithful*
+faithful ~
+  This port adjusts a few colors for a terminal: functions (`periwinkle`
+  instead of `frost`), variables (`mist` instead of `glacier`), constants
+  (`violet` instead of `azure`, which matched functions almost exactly),
+  the comment grey (a cool `#8a9db3` instead of `#999999`), docstrings
+  (a quieter sage instead of the string mint) and the Dark
+  Black selection. Set to true to use the exact VS Code values.
+
+                                              *winteriscoming-opt-plugins*
+plugins ~
+  `auto` enables an integration only when lazy.nvim has the plugin.
+  `all` enables everything. Force one with its name: >lua
+    plugins = { telescope = true, ["neo-tree"] = false }
+<
+==============================================================================
+5. OVERRIDING COLORS                                *winteriscoming-overrides*
+
+Highlight groups use roles (`colors.syntax.keyword`) that name palette
+colors (`"ice"`). Names are resolved after `on_colors`, so changing a
+palette color updates every role that uses it: >lua
+  on_colors = function(c)
+    c.ice = "#38c6ff"           -- keywords, operators, jump labels
+    c.syntax.string = "#c3f5c6" -- just one role
+    c.syntax.func = "frost"     -- point a role at another palette name
+  end,
+  on_highlights = function(hl, c)
+    hl.LineNr = { fg = c.fg_muted }
+  end,
+<
+Get the colors for statusline components and the like: >lua
+  local colors = require("winteriscoming").colors()
+<
+==============================================================================
+6. PLUGIN INTEGRATIONS                                *winteriscoming-plugins*
+
+aerial, alpha, avante, blink.cmp, bufferline, codecompanion, copilot,
+dashboard, diffview, fidget, flash, fzf-lua, gitsigns, grug-far, harpoon,
+headlines, indent-blankline, lazy.nvim, leap, lspsaga, mason, mini.nvim
+modules, neo-tree, neogit, neotest, noice, nvim-cmp, nvim-dap, nvim-dap-ui,
+nvim-navic, nvim-notify, nvim-tree, nvim-treesitter-context, nvim-ufo, oil,
+rainbow-delimiters, render-markdown, sidekick, snacks.nvim, telescope,
+todo-comments, trouble, vim-illuminate, which-key, yanky.
+
+==============================================================================
+7. LUALINE AND BUFFERLINE                             *winteriscoming-lualine*
+
+Lualine: `theme = "auto"` picks up `winteriscoming`, or name a style
+explicitly: `theme = "winteriscoming-light"`.
+
+Bufferline: works without configuration as long as bufferline's `themable`
+option is true (its default). With `themable = false`, pass the colors: >lua
+  opts = {
+    highlights = require("winteriscoming.groups.bufferline").highlights(),
+  }
+<
+==============================================================================
+8. EXTRAS                                              *winteriscoming-extras*
+
+Matching themes for alacritty, bat, delta, fzf, ghostty, iTerm2, kitty,
+lazygit, tmux, Windows Terminal and wezterm live in the `extras/` folder of
+the plugin.
+
+ vim:tw=78:ts=8:noet:ft=help:norl:

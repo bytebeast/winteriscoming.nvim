@@ -1,0 +1,28 @@
+# Winter is Coming Dark Black for lazygit: merge into ~/.config/lazygit/config.yml
+gui:
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - "#219fd5"
+      - "bold"
+    inactiveBorderColor:
+      - "#2381a8"
+    searchingActiveBorderColor:
+      - "#f7ecb5"
+      - "bold"
+    optionsTextColor:
+      - "#6dbdfa"
+    selectedLineBgColor:
+      - "#2a4258"
+    cherryPickedCommitFgColor:
+      - "#00bff9"
+    cherryPickedCommitBgColor:
+      - "#33332c"
+    markedBaseCommitFgColor:
+      - "#f7ecb5"
+    markedBaseCommitBgColor:
+      - "#33332c"
+    unstagedChangesColor:
+      - "#ef5350"
+    defaultFgColor:
+      - "#bce7ff"
