@@ -94,16 +94,23 @@ vim.o.background = "dark"
 vim.cmd.colorscheme("winteriscoming")
 check(vim.g.colors_name == "winteriscoming-blue", "plain colorscheme on dark bg -> " .. tostring(vim.g.colors_name))
 
--- italics = false removes every italic
+-- italics = false removes every italic the theme sets. Only the theme's own
+-- groups are checked: Neovim adds built-in groups over time (BoldItalic came
+-- in 0.12), and plugins define their own, so a scan of every group breaks
+-- whenever Neovim changes.
 wic.setup({ cache = false, plugins = { all = true }, italics = false })
 vim.cmd.colorscheme("winteriscoming-blue")
+local _, owned = require("winteriscoming.theme").setup({ style = "blue" })
 local italic = {}
-for name, hl in pairs(vim.api.nvim_get_hl(0, {})) do
-  if hl.italic then
+for name in pairs(owned) do
+  if vim.api.nvim_get_hl(0, { name = name, link = false }).italic then
     italic[#italic + 1] = name
   end
 end
+table.sort(italic)
 check(#italic == 0, "italics=false left italics: " .. table.concat(italic, ", "))
+check(not vim.api.nvim_get_hl(0, { name = "Comment", link = false }).italic, "italics=false: comments upright")
+check(not vim.api.nvim_get_hl(0, { name = "@keyword", link = false }).italic, "italics=false: keywords upright")
 
 -- transparent
 wic.setup({ cache = false, transparent = true })
