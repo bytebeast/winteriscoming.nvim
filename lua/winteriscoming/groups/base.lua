@@ -160,6 +160,7 @@ function M.get(c, opts)
     Underlined                  = { underline = true },
     Bold                        = { bold = true },
     Italic                      = { italic = true },
+    BoldItalic                  = { bold = true, italic = true }, -- Neovim 0.12+ default group
     Ignore                      = { fg = c.dark3 },
     Error                       = { fg = c.error },
     Todo                        = { fg = c.on_accent, bg = c.cream, bold = true },
