@@ -58,6 +58,56 @@ require("winteriscoming").setup({ style = "blue" })
 vim.cmd.colorscheme("winteriscoming")
 ```
 
+### Customizing in LazyVim
+
+Everything goes in `opts`. This example picks a style, changes a few options,
+recolors through the palette, and overrides individual highlight groups:
+
+```lua
+return {
+  {
+    "your-github-user/winteriscoming.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "black", -- "blue", "black" or "light"
+      transparent = true, -- let the terminal background show through
+      styles = {
+        functions = { italic = true }, -- add italics on top of comments + keywords
+        sidebars = "transparent", -- neo-tree, trouble, help, ...
+        floats = "transparent",
+      },
+      bright_line_numbers = true, -- every line number in winter blue, like VS Code
+
+      -- palette and role overrides, applied before highlights are built
+      on_colors = function(c)
+        c.ice = "#38c6ff" -- keywords, operators, jump labels, picker matches
+        c.syntax.string = "#c3f5c6" -- just strings
+        c.syntax.func = "frost" -- point a role at another palette color
+      end,
+
+      -- individual highlight groups, applied last
+      on_highlights = function(hl, c)
+        hl.CursorLineNr = { fg = c.cream, bold = true }
+        hl.WinSeparator = { fg = c.blue }
+        hl["@variable.parameter"] = { fg = c.cream, italic = true }
+        hl.SnacksPickerMatch = { fg = c.green, bold = true }
+      end,
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = { colorscheme = "winteriscoming" }, -- follows `style` above
+  },
+}
+```
+
+`on_colors` changes colors at the source, so everything that uses them
+follows (changing `ice` recolors every keyword). `on_highlights` is for
+one-off tweaks to specific groups. The palette names are listed under
+[Palette](#palette); `:Inspect` on any character shows which group colors it.
+Restart Neovim after changing `opts`.
+
 ## Configuration
 
 These are the defaults; pass only what you want to change.
