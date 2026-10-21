@@ -221,7 +221,22 @@ stable and nightly, checks formatting with StyLua, and fails if the generated
 extras are out of date. Types for lua-language-server live in
 `lua/winteriscoming/types.lua`.
 
-## Credits
+## 🙏 Credits
 
-- [John Papa](https://github.com/johnpapa) for the original Winter is Coming
-  theme (MIT).
+winteriscoming.nvim stands on the shoulders of:
+
+- **[John Papa](https://github.com/johnpapa)**, creator of
+  [Winter is Coming](https://github.com/johnpapa/vscode-winteriscoming) for
+  VS Code. The palette is his; this port only adds the extra shades Neovim
+  needs and nudges a few colors (see
+  [Adjusted colors](#adjusted-colors-and-faithful)).
+- **[Sarah Drasner](https://github.com/sdras)**:
+  [Night Owl](https://github.com/sdras/night-owl-vscode-theme), whose deep
+  navy inspired the Dark Blue background, and the source of the orange this
+  port adds.
+- **[folke](https://github.com/folke)**:
+  [tokyonight.nvim](https://github.com/folke/tokyonight.nvim), whose
+  architecture (plugin auto-detection, caching, extras) this plugin follows.
+- **[Catppuccin](https://github.com/catppuccin)**:
+  [catppuccin/nvim](https://github.com/catppuccin/nvim), the reference for
+  integration breadth and the `italics` / `bold` switches.
