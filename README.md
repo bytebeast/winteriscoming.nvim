@@ -66,7 +66,7 @@ recolors through the palette, and overrides individual highlight groups:
 ```lua
 return {
   {
-    "your-github-user/winteriscoming.nvim",
+    "bytebeast/winteriscoming.nvim",
     lazy = false,
     priority = 1000,
     opts = {
