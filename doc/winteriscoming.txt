@@ -143,12 +143,22 @@ todo-comments, trouble, vim-illuminate, which-key, yanky.
 Lualine: `theme = "auto"` picks up `winteriscoming`, or name a style
 explicitly: `theme = "winteriscoming-light"`.
 
-Bufferline: works without configuration as long as bufferline's `themable`
-option is true (its default). With `themable = false`, pass the colors: >lua
-  opts = {
-    highlights = require("winteriscoming.groups.bufferline").highlights(),
+Bufferline: the tabs are themed without configuration, but bufferline builds
+its file icon groups from its own `highlights` option, so the icons keep a
+background derived from `Normal` unless you pass the colors. As a function,
+bufferline re-reads them on every |:colorscheme|: >lua
+  {
+    "akinsho/bufferline.nvim",
+    opts = function(_, opts)
+      opts.highlights = function()
+        return require("winteriscoming.groups.bufferline").highlights()
+      end
+    end,
   }
 <
+The function follows the loaded winteriscoming style and returns nothing
+under another colorscheme.
+
 ==============================================================================
 8. EXTRAS                                              *winteriscoming-extras*
 

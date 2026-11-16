@@ -69,12 +69,19 @@ function M.theme(c, opts)
   return ret
 end
 
---- Highlights in bufferline's format for its `highlights` option. Only needed
---- if you set bufferline's `themable = false`; otherwise the colorscheme
---- groups below are picked up automatically.
+--- Highlights in bufferline's format for its `highlights` option. The named
+--- groups below are picked up without this, but bufferline builds its file
+--- icon groups from its own `highlights`, so without it icons keep a
+--- background derived from `Normal`. Follows the loaded winteriscoming style
+--- and returns nothing when another colorscheme is active.
 ---@param opts? winteriscoming.Config
 function M.highlights(opts)
-  local c, o = require("winteriscoming.colors").setup(opts)
+  local name = vim.g.colors_name
+  local style = name and name:match("^winteriscoming%-(%a+)$")
+  if name and not style then
+    return {}
+  end
+  local c, o = require("winteriscoming.colors").setup(vim.tbl_extend("keep", opts or {}, { style = style }))
   return M.theme(c, o)
 end
 
