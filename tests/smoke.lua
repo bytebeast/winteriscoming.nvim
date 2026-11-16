@@ -76,6 +76,13 @@ check(hex("@lsp.typemod.property.declaration") == "#d6deeb", "declared fields us
 check(hex("BufferLineBufferSelected") ~= "#000000", "bufferline groups defined")
 check(hex("BufferLineErrorSelected") == hex("BufferLineBufferSelected"), "tab name keeps its color with errors")
 check(hex("BufferLineErrorDiagnosticSelected") == "#ef5350", "error count is red")
+-- bufferline's `highlights` option follows the loaded style, and steps aside for other colorschemes
+local bl = require("winteriscoming.groups.bufferline")
+vim.cmd.colorscheme("winteriscoming-light")
+check(bl.highlights().buffer_selected.bg == "#e3e3e3", "bufferline highlights follow the loaded style")
+vim.cmd.colorscheme("default")
+check(next(bl.highlights()) == nil, "bufferline highlights empty under another colorscheme")
+vim.cmd.colorscheme("winteriscoming-blue")
 
 -- background switching keeps the family
 vim.cmd.colorscheme("winteriscoming-black")
@@ -93,6 +100,14 @@ check(vim.g.colors_name == "winteriscoming-light", "plain colorscheme on light b
 vim.o.background = "dark"
 vim.cmd.colorscheme("winteriscoming")
 check(vim.g.colors_name == "winteriscoming-blue", "plain colorscheme on dark bg -> " .. tostring(vim.g.colors_name))
+
+-- starting light and switching to dark uses the configured dark style
+wic.setup({ cache = false, style = "black" })
+wic.styles = {}
+vim.o.background = "light"
+vim.cmd.colorscheme("winteriscoming")
+vim.o.background = "dark"
+check(vim.g.colors_name == "winteriscoming-black", "light start, bg=dark -> " .. tostring(vim.g.colors_name))
 
 -- italics = false removes every italic the theme sets. Only the theme's own
 -- groups are checked: Neovim adds built-in groups over time (BoldItalic came

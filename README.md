@@ -42,14 +42,25 @@ return {
     "LazyVim/LazyVim",
     opts = { colorscheme = "winteriscoming" }, -- or "winteriscoming-black", ...
   },
+  {
+    "akinsho/bufferline.nvim",
+    opts = function(_, opts)
+      -- bufferline builds its file icon colors from these
+      opts.highlights = function()
+        return require("winteriscoming.groups.bufferline").highlights()
+      end
+    end,
+  },
 }
 ```
 
 LazyVim's lualine uses `theme = "auto"`, which picks up the bundled lualine
 theme by itself. The bufferline gets the VS Code tab look (dark inactive tabs, a
-lighter navy active tab with a winter-blue marker) without any setup.
-Integrations are enabled for exactly the plugins lazy.nvim has installed, so
-there is nothing to list. Full docs: `:h winteriscoming`.
+lighter navy active tab with a winter-blue marker) by itself too, but bufferline
+draws file icons from its own `highlights` option, so without the block above
+the icons sit on a mismatched background. Integrations are enabled for exactly
+the plugins lazy.nvim has installed, so there is nothing to list. Full docs:
+`:h winteriscoming`.
 
 Without LazyVim:
 

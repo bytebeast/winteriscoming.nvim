@@ -14,7 +14,8 @@ function M.load(opts)
   if bg ~= style_bg then
     if vim.g.colors_name == "winteriscoming-" .. opts.style then
       -- `:set background=...` after the theme loaded: switch variants
-      opts.style = bg == "light" and (M.styles.light or opts.light_style or "light") or (M.styles.dark or "blue")
+      local dark = config.options.style ~= "light" and config.options.style or "blue"
+      opts.style = bg == "light" and (M.styles.light or opts.light_style or "light") or (M.styles.dark or dark)
     else
       vim.o.background = style_bg
     end
