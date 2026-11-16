@@ -15,6 +15,8 @@ A Neovim and LazyVim port of John Papa's
 
 ## Styles
 
+![winteriscoming-blue, winteriscoming-black and winteriscoming-light](images/styles.png)
+
 | Colorscheme            | Based on                      | Background                   |
 | ---------------------- | ----------------------------- | ---------------------------- |
 | `winteriscoming-blue`  | Winter is Coming (Dark Blue)  | `#011627` navy               |
@@ -25,6 +27,18 @@ A Neovim and LazyVim port of John Papa's
 Comments and keywords are italic by default. The original theme also italicizes
 functions, variables, properties and decorators; see [Italics](#italics) to turn
 that back on.
+
+## Screenshots
+
+Real LazyVim sessions (vtsls and pyright for LSP, treesitter for everything
+else).
+
+|                                                                                      |                                                                         |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| ![completion in winteriscoming-blue](images/screenshots/hero.png)                    | ![snacks picker in winteriscoming-black](images/screenshots/picker.png) |
+| **Completion and explorer** · blue                                                   | **Picker** · black                                                      |
+| ![hover and diagnostics in winteriscoming-light](images/screenshots/hover-light.png) | ![dashboard in winteriscoming-blue](images/screenshots/dashboard.png)   |
+| **Diagnostics and hover** · light                                                    | **Dashboard** · blue                                                    |
 
 ## Install with LazyVim
 
@@ -226,22 +240,24 @@ Everything comes from the VS Code theme unless noted. Neovim needs more than an
 editor theme does (diff backgrounds, search, jump labels, an orange), so the
 palette is expanded with shades derived from the original:
 
-| Name                     | Blue / Black | Light            | Used for                               |
-| ------------------------ | ------------ | ---------------- | -------------------------------------- |
-| `ice`                    | `#00bff9`    | `#0784a6`        | keywords, operators, `this`            |
-| `blue`                   | `#219fd5`    | `#2f86d2`        | cursor, line numbers, statusline, info |
-| `periwinkle` / `magenta` | `#8fa2f8`    | `#b1108e`        | functions                              |
-| `mist`                   | `#b3c8d9`    | `#6b6b6b`        | variables                              |
-| `violet`                 | `#a170c6`    | —                | constants                              |
-| `lavender`               | `#d29ffc`    | `#7c2cbd`        | types, classes                         |
-| `cream`                  | `#f7ecb5`    | `#b05f0a`        | properties, decorators, current search |
-| `mint`                   | `#bcf0c0`    | `#a44185` (plum) | strings                                |
-| `green`                  | `#8dec95`    | `#07805e`        | numbers, booleans                      |
-| `teal`                   | `#7fdbca`    | `#2f7d70`        | built-in types, hints                  |
-| `purple`                 | `#c792ea`    | `#7b30d0`        | active indent guide, storage           |
-| `ember`                  | `#f78c6c`    | `#da5221`        | _added_: the orange Neovim UIs expect  |
-| `red`                    | `#ef5350`    | `#de3d3b`        | errors                                 |
-| `amber`                  | `#ffca28`    | `#9a6a00`        | warnings                               |
+![winteriscoming palettes](images/palette.png)
+
+| Name                     | Blue / Black          | Light            | Used for                               |
+| ------------------------ | --------------------- | ---------------- | -------------------------------------- |
+| `ice`                    | `#00bff9`             | `#0784a6`        | keywords, operators, `this`            |
+| `blue`                   | `#219fd5`             | `#2f86d2`        | cursor, line numbers, statusline, info |
+| `periwinkle` / `magenta` | `#8fa2f8`             | `#b1108e`        | functions                              |
+| `mist`                   | `#b3c8d9`             | `#6b6b6b`        | variables                              |
+| `violet`                 | `#a170c6` / `#ad80d4` | —                | constants                              |
+| `lavender`               | `#d29ffc`             | `#7c2cbd`        | types, classes                         |
+| `cream`                  | `#f7ecb5`             | `#b05f0a`        | properties, decorators, current search |
+| `mint`                   | `#bcf0c0`             | `#a44185` (plum) | strings                                |
+| `green`                  | `#8dec95`             | `#07805e`        | numbers, booleans                      |
+| `teal`                   | `#7fdbca`             | `#2f7d70`        | built-in types, hints                  |
+| `purple`                 | `#c792ea`             | `#7b30d0`        | active indent guide, storage           |
+| `ember`                  | `#f78c6c`             | `#da5221`        | _added_: the orange Neovim UIs expect  |
+| `red`                    | `#ef5350`             | `#de3d3b`        | errors                                 |
+| `amber`                  | `#ffca28`             | `#9a6a00`        | warnings                               |
 
 The light palette darkens a few original colors slightly (marked `[adj]` in
 `lua/winteriscoming/colors/light.lua`) so code stays readable on white.
@@ -281,6 +297,11 @@ transparency, the cache, overrides and the lualine themes. CI runs it on Neovim
 stable and nightly, checks formatting with StyLua, and fails if the generated
 extras are out of date. Types for lua-language-server live in
 `lua/winteriscoming/types.lua`.
+
+The README images are rebuilt by `scripts/screenshots/run.sh`. It drives a real
+LazyVim session through `nvim --embed`, borrowing plugins, treesitter parsers
+and language servers from an existing LazyVim install, and needs `uv` and
+JetBrains Mono Nerd Font. See the top of the script for overrides.
 
 ## 🙏 Credits
 
