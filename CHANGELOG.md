@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.0 (2026-11-21)
+
+### Features
+
+- **diff**: underline changed and added text inside changed lines
+
+### Documentation
+
+- stock LazyVim example, font guide and per-extra setup guides
+
 ## v1.1.0 (2026-11-21)
 
 ### Features
