@@ -229,24 +229,39 @@ do
   Util.cache.clear()
 end
 
--- :checkhealth is quiet with stock colors and reports overrides that hurt contrast
+-- health check: quiet with stock colors, reports overrides that hurt contrast.
+-- Calls the module with vim.health stubbed rather than reading the
+-- :checkhealth buffer, whose rendering differs between Neovim versions.
 do
-  local function health(opts)
-    load(opts)
-    vim.cmd("silent checkhealth winteriscoming")
-    local text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
-    vim.cmd("bwipeout!")
+  local function health(style, opts)
+    wic.setup(vim.tbl_extend("force", { cache = false, plugins = { all = true } }, opts or {}))
+    vim.cmd.colorscheme("winteriscoming-" .. style)
+    local out, saved = {}, {}
+    for _, kind in ipairs({ "start", "ok", "info", "warn", "error" }) do
+      saved[kind] = vim.health[kind]
+      vim.health[kind] = function(msg)
+        out[#out + 1] = kind:upper() .. " " .. msg
+      end
+    end
+    local ok, err = pcall(require("winteriscoming.health").check)
+    for kind, fn in pairs(saved) do
+      vim.health[kind] = fn
+    end
+    check(ok, "health: check runs on " .. style .. ": " .. tostring(err))
+    local text = table.concat(out, "\n")
+    check(text:find("Active: winteriscoming%-" .. style), "health: reports the active style " .. style)
     return text
   end
   for _, style in ipairs({ "blue", "black", "light" }) do
-    check(not health({ style = style }):find("WARNING"), "health: no warnings for stock " .. style)
+    local text = health(style)
+    check(not text:find("WARN") and not text:find("ERROR"), "health: quiet for stock " .. style .. "\n" .. text)
   end
-  local text = health({
+  local text = health("blue", {
     on_colors = function(c)
       c.syntax.string = "#203040"
     end,
   })
-  check(text:find("below WCAG AA") and text:find("string"), "health: reports a low-contrast override")
+  check(text:find("WARN on_colors pushed") and text:find("string"), "health: reports a low-contrast override\n" .. text)
 end
 
 -- color options ---------------------------------------------------------------
