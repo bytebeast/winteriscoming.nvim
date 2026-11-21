@@ -73,8 +73,9 @@ theme by itself. The bufferline gets the VS Code tab look (dark inactive tabs, a
 lighter navy active tab with a winter-blue marker) by itself too, but bufferline
 draws file icons from its own `highlights` option, so without the block above
 the icons sit on a mismatched background. Integrations are enabled for exactly
-the plugins lazy.nvim has installed, so there is nothing to list. Full docs:
-`:h winteriscoming`.
+the plugins lazy.nvim (or `vim.pack`) has installed, so there is nothing to
+list. Full docs: `:h winteriscoming`; `:checkhealth winteriscoming` shows what
+is active.
 
 Without LazyVim:
 
@@ -143,6 +144,7 @@ require("winteriscoming").setup({
   light_style = "light", -- used when 'background' is light
   transparent = false, -- don't set the editor background
   terminal_colors = true, -- colors for :terminal
+  hide_inactive_statusline = false, -- inactive statuslines become a thin line
   italics = true, -- false drops every italic, comments and keywords included
   bold = true, -- false drops every bold attribute
   styles = {
@@ -157,23 +159,72 @@ require("winteriscoming").setup({
     types = {},
     strings = {},
     operators = {},
+    virtual_text = {}, -- diagnostic virtual text
+    inlay_hints = {},
+    -- LSP semantic modifiers, stacked on the token's color
+    mutable = {}, -- e.g. { underline = true } for Rust `mut`
+    readonly = {}, -- e.g. { italic = true }
+    statics = {}, -- e.g. { bold = true }
+    globals = {}, -- e.g. { underdotted = true }
     sidebars = "dark", -- "dark", "transparent" or "normal"
     floats = "dark", -- "dark", "transparent" or "normal"
   },
   bright_line_numbers = false, -- true = every line number in winter blue, like VS Code
   faithful = false, -- true = exact VS Code colors instead of this port's adjustments
   dim_inactive = false, -- darken inactive windows
+  contrast = "normal", -- "high" lifts every syntax color to WCAG AA, plus comments and line numbers
+  subtle_comments = false, -- true, a fade from 0 to 1, or { fade = 0.7, docstrings = false }
+  colorblind = false, -- "red-green" or "blue-yellow"
+  saturation = 1, -- 0 (greys) to 1 (full color); contrast is kept
+  accent = "blue", -- titles, badges, selected tab, float borders, normal mode
+  rainbow = "vivid", -- rainbow delimiters and indent scopes: "vivid", "dimmed" or "mono"
+  rainbow_variables = false, -- a color per local variable (needs LSP semantic tokens)
+  diagnostics = {
+    underline = "undercurl", -- "undercurl", "underline" or false
+    virtual_text = "tinted", -- "tinted" or "plain"
+  },
+  inlay_hints = "tinted", -- "tinted" or "plain"
+  borderless = false, -- pickers framed by shade instead of border lines
+  bright_borders = false, -- float borders in the full accent color
   lualine_bold = false, -- bold mode section in lualine
   on_colors = function(colors) end,
   on_highlights = function(highlights, colors) end,
   cache = true,
   plugins = {
-    all = package.loaded.lazy == nil, -- everything when not using lazy.nvim
-    auto = true, -- with lazy.nvim, only plugins you have installed
+    all = nil, -- nil: everything, unless lazy.nvim or vim.pack is in use
+    auto = true, -- with lazy.nvim or vim.pack, only plugins you have installed
     -- telescope = true, -- force an integration on or off
   },
 })
 ```
+
+Invalid values are reported once and replaced by their defaults.
+
+### Accessibility and color options
+
+These change derived colors only; the palette and its role mapping stay as they
+are.
+
+- `contrast = "high"` lifts every syntax color below WCAG AA (4.5:1) up to it,
+  and brightens comments, line numbers, inlay hints and muted UI text. A few
+  stock colors sit just under AA (light keywords at 4.3:1, `template` magenta
+  at 4.4:1 on navy), so this is the switch for bright rooms and low vision.
+- `colorblind` remaps git signs, diffs and diagnostics to colors that stay
+  apart under a simulation of each deficiency (Machado et al. 2009), following
+  GitHub's conventions: added and ok are blue, deleted and errors warm. Syntax
+  colors are untouched.
+- `subtle_comments` fades comments by contrast, so the same value looks the
+  same in every style, and never below 1.6:1. A comment color you set in
+  `on_colors` is left alone.
+- `saturation` scales color in OKLab and restores each color's contrast, so
+  `0.6` is calmer without getting harder to read. Git, diff and diagnostic
+  colors keep at least 70% of theirs so they stay distinguishable.
+- `accent` is one of `blue`, `sky`, `azure`, `periwinkle`, `teal`, `aqua`,
+  `green`, `lime`, `cream`, `amber`, `coral`, `rose`, `pink`, `lavender` or
+  `purple`; every choice besides the default keeps badge text at 4.5:1.
+- `rainbow_variables` gives every local variable and parameter its own color
+  from its name, as in JetBrains IDEs: 12 colors (6 with `colorblind`), all at
+  AA on the cursorline.
 
 ### Italics
 
@@ -264,22 +315,39 @@ The light palette darkens a few original colors slightly (marked `[adj]` in
 
 ## Plugin integrations
 
-aerial, alpha, avante, blink.cmp, bufferline, codecompanion, copilot, dashboard,
-diffview, fidget, flash, fzf-lua, gitsigns, grug-far, harpoon, headlines,
-indent-blankline, lazy.nvim, leap, lspsaga, mason, mini (animate, clue,
-cursorword, diff, files, hipatterns, icons, indentscope, jump, pick, starter,
-statusline, surround, tabline), neo-tree, neogit, neotest, noice, nvim-cmp,
-nvim-dap, nvim-dap-ui, nvim-navic, nvim-notify, nvim-tree,
-nvim-treesitter-context, nvim-ufo, oil, rainbow-delimiters, render-markdown,
-sidekick, snacks (dashboard, picker, notifier, indent, input…), telescope,
-todo-comments, trouble, vim-illuminate, which-key, yanky.
+aerial, alpha, avante, barbar, blink.cmp, blink.pairs, bufferline, coc.nvim,
+codecompanion, codediff, copilot, dashboard, diffview, dropbar, fidget, flash,
+fzf-lua, git-conflict, gitsigns, grug-far, harpoon, headlines, hlargs, hop,
+hover.nvim, indent-blankline, lazy.nvim, leap, lspsaga, markview, mason, mini
+(animate, clue, cursorword, diff, files, hipatterns, icons, indentscope, jump,
+pick, starter, statusline, surround, tabline), minuet-ai, neo-tree, neogit,
+neotest, noice, nvim-cmp, nvim-cursorword, nvim-dap, nvim-dap-ui, nvim-navic,
+nvim-notify, nvim-scrollbar, nvim-tree, nvim-treesitter-context, nvim-ufo, octo,
+oil, orgmode, outline, overseer, rainbow-delimiters, render-markdown, sidekick,
+snacks (dashboard, picker, notifier, indent, input…), telescope, todo-comments,
+trouble, vim-gitgutter, vim-illuminate, virt-column, which-key, yanky.
+
+With lazy.nvim or `vim.pack` (Neovim 0.12+), only the integrations for plugins
+you have installed are loaded. Without either, all of them are.
 
 ## Extras
 
-Matching themes for other tools are in [`extras/`](extras): alacritty, bat,
-delta, fzf, ghostty, iTerm2, kitty, lazygit, tmux, Windows Terminal and wezterm.
-Each file starts with install instructions; delta uses the bat theme for its
-syntax colors. Regenerate them after changing the palette:
+Matching themes for other tools are in [`extras/`](extras), one file per style:
+alacritty, bat, btop, delta, eza, fish, foot, fzf, ghostty, Helix, iTerm2, k9s
+(plus `_transparent` skins), kitty, lazygit, st, Termux, tmux, Vim, wezterm,
+Windows Terminal, Xresources, Yazi, zathura, Zed, Zellij and Zettlr. Most files
+start with install instructions; delta uses the bat theme for its syntax colors.
+The rest:
+
+| Tool             | Install                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------- |
+| Zed              | copy to `~/.config/zed/themes/` and pick the theme in Zed                                         |
+| Windows Terminal | paste the object into `schemes` in `settings.json`                                                |
+| Vim              | add `extras/vim` to `runtimepath`, then `:colorscheme winteriscoming-blue` (needs `termguicolors`) |
+| Yazi             | copy a `winteriscoming-<style>.yazi` folder to `~/.config/yazi/flavors/`, then set it in `theme.toml` |
+| iTerm2           | Settings, Profiles, Colors, Color Presets, Import                                                 |
+
+Regenerate them after changing the palette:
 
 ```sh
 nvim --headless --clean -u NONE --cmd "set rtp^=." -l lua/winteriscoming/extra/init.lua
@@ -289,13 +357,33 @@ nvim --headless --clean -u NONE --cmd "set rtp^=." -l lua/winteriscoming/extra/i
 
 ```sh
 nvim --headless --clean -u NONE --cmd "set rtp^=." -l tests/smoke.lua
+nvim --headless --clean -u NONE --cmd "set rtp^=." -l tests/extras.lua
 ```
 
 The smoke test loads all three styles with every integration, checks every link
 target and color value, background switching, `italics = false`, `faithful`,
-transparency, the cache, overrides and the lualine themes. CI runs it on Neovim
-stable and nightly, checks formatting with StyLua, and fails if the generated
-extras are out of date. Types for lua-language-server live in
+transparency, the cache, overrides, plugin detection, every option, and the
+lualine themes. The color options are held to measured invariants: WCAG AA for
+`contrast = "high"` and `rainbow_variables`, simulated color vision separation
+for `colorblind`, unchanged contrast under `saturation`. The extras test checks
+the newer extras against each tool's own key list (`tests/fixtures/` for Helix,
+Zed and Yazi, each pinned to an upstream commit), compiles the st header and
+loads the Vim colorschemes in Vim when `cc` and `vim` are installed.
+
+CI runs both on Neovim stable and nightly, checks formatting with StyLua,
+lints Python with ruff, and fails if the generated extras are out of date. A
+weekly security workflow runs gitleaks and zizmor.
+
+Releases come from conventional commits: `feat` is a minor release, `fix` and
+`perf` a patch, `!` or `BREAKING CHANGE:` a major, anything else none.
+`.github/workflows/release.yml` opens a `chore(release): vX.Y.Z` PR that bumps
+`M.version`, `pyproject.toml` and the CHANGELOG, and tags the commit once it
+merges. Don't edit versions or CHANGELOG headings by hand.
+
+The site at `site/` is built into `_site/` with
+`nvim --headless --clean -u NONE --cmd "set rtp^=." -l scripts/build_site.lua`
+and deployed by `.github/workflows/pages.yml`; its colors come from the real
+palettes. Types for lua-language-server live in
 `lua/winteriscoming/types.lua`.
 
 The README images are rebuilt by `scripts/screenshots/run.sh`. It drives a real
