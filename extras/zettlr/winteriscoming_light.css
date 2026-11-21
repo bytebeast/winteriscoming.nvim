@@ -1,0 +1,141 @@
+/*
+ * Winter is Coming Light for Zettlr (applies in light mode (dark mode off))
+ * upstream: https://github.com/johnpapa/vscode-winteriscoming
+ *
+ * Install: Zettlr -> Assets Manager -> Custom CSS, paste this file, save.
+ * To follow Zettlr's dark mode, paste a light and a dark file together, e.g.
+ *   cat winteriscoming_light.css winteriscoming_blue.css
+ * Themes the editor, file manager, sidebar, menu bar, toolbar, tabs and
+ * status bar.
+ */
+
+/* ── Editor colors (Zettlr's documented variables) ─────────────────────── */
+html body:not(.dark) .cm-editor {
+  --zettlr-editor-scroller-color: #002339;
+  --zettlr-editor-scroller-bg: #ffffff;
+  --zettlr-editor-primary-color: #2f86d2;
+  --zettlr-editor-secondary-color: #87429a;
+  --zettlr-editor-selection-color: #cee1f0;
+  --zettlr-editor-highlight-color: #d8cded;
+  --zettlr-editor-code-color: #0460b1;
+  --zettlr-editor-code-bg: #eff2ef;
+  --zettlr-editor-citation-color: #da5221;
+  --zettlr-editor-citation-bg: #fbeae4;
+  --zettlr-editor-escape-color: #c42fa4;
+  --zettlr-editor-accent-color: #ffffff;
+  --zettlr-editor-accent-bg: #7c2cbd;
+  --zettlr-editor-error-color: #de3d3b;
+}
+
+/* Zettlr's accent (selected files, toggles, focus) normally follows your OS
+   accent color. Delete these two lines to keep that behavior. */
+html body:not(.dark) { --system-accent-color: #2f86d2; --system-accent-color-contrast: #ffffff; }
+
+html body:not(.dark) .main-editor-wrapper { background-color: #ffffff; }
+html body:not(.dark) .cm-editor .cm-gutters { background-color: #ffffff; color: #599edb; border-right-color: #eff2ef; }
+html body:not(.dark) .cm-editor .cm-activeLineGutter { color: #1857a4; }
+html body:not(.dark) .cm-editor .code-block-line-background { background-color: #f3f3f3; }
+html body:not(.dark) .cm-editor .inline-code-background { background-color: #eff2ef; }
+html body:not(.dark) .cm-editor .cm-quote { color: #003494; }
+html body:not(.dark) .cm-editor .cm-code-mark { color: #5f7e97; }
+html body:not(.dark) .cm-editor .cm-zkn-tag { color: #207bb8; background-color: #e4eff6; border-radius: 3px; }
+html body:not(.dark) .cm-editor .cm-zkn-link { color: #924205; }
+
+/* Headings: same colors as the markdown headings in Neovim */
+html body:not(.dark) .cm-editor .cm-header-1 { color: #034c7c; }
+html body:not(.dark) .cm-editor .cm-header-2 { color: #2970c7; }
+html body:not(.dark) .cm-editor .cm-header-3 { color: #7c2cbd; }
+html body:not(.dark) .cm-editor .cm-header-4 { color: #b05f0a; }
+html body:not(.dark) .cm-editor .cm-header-5 { color: #07805e; }
+html body:not(.dark) .cm-editor .cm-header-6 { color: #c42fa4; }
+
+/* ── Code block syntax highlighting (same roles as in Neovim) ────────────── */
+html body:not(.dark) .cm-editor .cm-comment,
+html body:not(.dark) .cm-editor .cm-line-comment,
+html body:not(.dark) .cm-editor .cm-block-comment { color: #357b42; font-style: italic; }
+html body:not(.dark) .cm-editor .cm-doc-comment,
+html body:not(.dark) .cm-editor .cm-doc-string { color: #885678; font-style: italic; }
+html body:not(.dark) .cm-editor .cm-keyword,
+html body:not(.dark) .cm-editor .cm-control-keyword,
+html body:not(.dark) .cm-editor .cm-definition-keyword,
+html body:not(.dark) .cm-editor .cm-operator-keyword,
+html body:not(.dark) .cm-editor .cm-modifier { color: #0784a6; font-style: italic; }
+html body:not(.dark) .cm-editor .cm-module-keyword { color: #0784a6; font-style: italic; }
+html body:not(.dark) .cm-editor .cm-string { color: #a44185; }
+html body:not(.dark) .cm-editor .cm-character { color: #a44185; }
+html body:not(.dark) .cm-editor .cm-escape { color: #b8418f; }
+html body:not(.dark) .cm-editor .cm-regexp { color: #00866f; }
+html body:not(.dark) .cm-editor .cm-number,
+html body:not(.dark) .cm-editor .cm-integer,
+html body:not(.dark) .cm-editor .cm-float,
+html body:not(.dark) .cm-editor .cm-unit { color: #174781; }
+html body:not(.dark) .cm-editor .cm-bool,
+html body:not(.dark) .cm-editor .cm-null,
+html body:not(.dark) .cm-editor .cm-atom { color: #174781; }
+html body:not(.dark) .cm-editor .cm-literal,
+html body:not(.dark) .cm-editor .cm-color { color: #2970c7; }
+html body:not(.dark) .cm-editor .cm-type-name,
+html body:not(.dark) .cm-editor .cm-class-name { color: #0444ac; }
+html body:not(.dark) .cm-editor .cm-namespace { color: #296d31; }
+html body:not(.dark) .cm-editor .cm-variable-name { color: #6b6b6b; }
+html body:not(.dark) .cm-editor .cm-self { color: #0784a6; }
+html body:not(.dark) .cm-editor .cm-property-name { color: #b05f0a; }
+html body:not(.dark) .cm-editor .cm-macro-name { color: #da5221; }
+html body:not(.dark) .cm-editor .cm-annotation,
+html body:not(.dark) .cm-editor .cm-meta { color: #a85f08; }
+html body:not(.dark) .cm-editor .cm-operator,
+html body:not(.dark) .cm-editor .cm-arithmetic-operator,
+html body:not(.dark) .cm-editor .cm-logic-operator,
+html body:not(.dark) .cm-editor .cm-bitwise-operator,
+html body:not(.dark) .cm-editor .cm-compare-operator,
+html body:not(.dark) .cm-editor .cm-update-operator,
+html body:not(.dark) .cm-editor .cm-definition-operator,
+html body:not(.dark) .cm-editor .cm-type-operator,
+html body:not(.dark) .cm-editor .cm-control-operator,
+html body:not(.dark) .cm-editor .cm-deref-operator { color: #7b30d0; }
+html body:not(.dark) .cm-editor .cm-punctuation,
+html body:not(.dark) .cm-editor .cm-separator,
+html body:not(.dark) .cm-editor .cm-bracket,
+html body:not(.dark) .cm-editor .cm-brace,
+html body:not(.dark) .cm-editor .cm-paren,
+html body:not(.dark) .cm-editor .cm-square-bracket { color: #3e3e3e; }
+html body:not(.dark) .cm-editor .cm-tag-name { color: #0444ac; }
+html body:not(.dark) .cm-editor .cm-angle-bracket { color: #3e3e3e; }
+html body:not(.dark) .cm-editor .cm-attribute-name { color: #a85f08; font-style: italic; }
+html body:not(.dark) .cm-editor .cm-attribute-value { color: #a44185; }
+html body:not(.dark) .cm-editor .cm-inserted { color: #22863a; }
+html body:not(.dark) .cm-editor .cm-deleted { color: #b31d28; }
+html body:not(.dark) .cm-editor .cm-changed { color: #1857a4; }
+html body:not(.dark) .cm-editor .cm-invalid { color: #de3d3b; text-decoration: underline wavy #de3d3b; }
+
+/* ── File manager and sidebar ─────────────────────────────────────────── */
+/* Zettlr paints these per platform (body.linux / .darwin / .win32); the id
+   selector outranks all of them. */
+html body:not(.dark) #file-manager,
+html body:not(.dark) #sidebar { background-color: #f3f3f3; color: #37567c; }
+html body:not(.dark) #file-manager #file-tree,
+html body:not(.dark) #file-manager #file-list,
+html body:not(.dark) #file-manager .tree-item.directory:not(.collapsed),
+html body:not(.dark) #file-manager div.list-item-wrapper,
+html body:not(.dark) #file-manager div.list-item,
+html body:not(.dark) #file-manager div.list-item div.filename div.date { background-color: #f3f3f3; }
+html body:not(.dark) #file-manager div.list-item { border-bottom-color: #eff2ef; }
+html body:not(.dark):not(#winteriscoming) #file-manager input.file-manager-filter-input { background-color: #eff2ef; color: #002339; border-color: #e3e3e3; }
+html body:not(.dark):not(#winteriscoming) #file-manager input.file-manager-filter-input::placeholder { color: #5f7e97; }
+
+/* ── Window chrome ────────────────────────────────────────────────────── */
+/* `:not(#winteriscoming)` matches every element but counts as an id, so these
+   outrank Zettlr's chrome rules (Vue scoped attributes, per-platform classes
+   like body.linux.dark) without assuming any particular page structure. */
+html body:not(.dark):not(#winteriscoming) div#window-content { background-color: #f3f3f3; }
+html body:not(.dark):not(#winteriscoming) #menubar { background-color: #e8e8e8; color: #37567c; }
+html body:not(.dark):not(#winteriscoming) div#toolbar { background-color: #f3f3f3; color: #37567c; }
+html body:not(.dark):not(#winteriscoming) div#toolbar button { color: #37567c; border-color: #d4d4d4; }
+html body:not(.dark):not(#winteriscoming) div#toolbar button:hover,
+html body:not(.dark):not(#winteriscoming) div#toolbar button.active { background-color: #e3e3e3; color: #002339; }
+html body:not(.dark):not(#winteriscoming) div.tab-container { background-color: #e8e8e8; }
+html body:not(.dark):not(#winteriscoming) div.tab-container div[role="tab"] { background-color: #e8e8e8; color: #5f7e97; border-color: #eff2ef; }
+html body:not(.dark):not(#winteriscoming) div.tab-container div[role="tab"]:hover { background-color: #eff2ef; color: #37567c; }
+html body:not(.dark):not(#winteriscoming) div.tab-container div[role="tab"].active { background-color: #e3e3e3; color: #3e3e3e; border-bottom-color: #2f86d2; }
+html body:not(.dark) .cm-editor .cm-panels,
+html body:not(.dark) .cm-editor .cm-statusbar { background-color: #f3f3f3; color: #37567c; }

@@ -1,0 +1,72 @@
+const DESCRIPTIONS = {
+  blue: "Dark Blue: the signature navy. The default.",
+  black: "Dark Black: the same syntax colors on charcoal.",
+  light: "Light: white, with the original light mapping.",
+};
+
+// the README screenshots, one per style
+const SHOTS = { blue: "hero", black: "picker", light: "hover-light" };
+
+const shot = document.getElementById("shot");
+const lightbox = document.getElementById("lightbox");
+
+function apply(style, save) {
+  if (!(style in DESCRIPTIONS)) return;
+  document.documentElement.dataset.style = style;
+  for (const el of document.querySelectorAll("[data-pick]")) {
+    el.setAttribute("aria-pressed", String(el.dataset.pick === style));
+  }
+  shot.src = `images/screenshots/${SHOTS[style]}.png`;
+  shot.alt = `winteriscoming-${style} in LazyVim`;
+  document.getElementById("shot-name").textContent = `winteriscoming-${style}`;
+  document.getElementById("shot-desc").textContent = DESCRIPTIONS[style];
+  if (save) {
+    try {
+      localStorage.setItem("winteriscoming-style", style);
+    } catch {
+      // storage blocked (private mode, file://): the pick just won't persist
+    }
+  }
+}
+
+function selectTab(name) {
+  for (const tab of document.querySelectorAll("[data-tab]")) {
+    tab.setAttribute("aria-selected", String(tab.dataset.tab === name));
+  }
+  for (const panel of document.querySelectorAll("[data-panel]")) {
+    panel.hidden = panel.dataset.panel !== name;
+  }
+}
+
+document.addEventListener("click", async (e) => {
+  const pick = e.target.closest("[data-pick]");
+  if (pick) return apply(pick.dataset.pick, true);
+
+  const tab = e.target.closest("[data-tab]");
+  if (tab) return selectTab(tab.dataset.tab);
+
+  const zoom = e.target.closest("[data-zoom]");
+  if (zoom) {
+    const img = zoom.querySelector("img");
+    lightbox.querySelector("img").src = img.src;
+    lightbox.querySelector("img").alt = img.alt;
+    lightbox.querySelector("p").textContent = zoom.nextElementSibling.textContent;
+    return lightbox.showModal();
+  }
+  // any click on the open lightbox, image or backdrop, closes it; Esc is handled by <dialog>
+  if (e.target.closest("#lightbox")) return lightbox.close();
+
+  const copy = e.target.closest("[data-copy]");
+  if (copy) {
+    try {
+      await navigator.clipboard.writeText(copy.parentElement.querySelector("code").textContent);
+      copy.textContent = "copied";
+    } catch {
+      copy.textContent = "copy failed";
+    }
+    setTimeout(() => (copy.textContent = "copy"), 1500);
+  }
+});
+
+apply(document.documentElement.dataset.style, false);
+selectTab("lazyvim");

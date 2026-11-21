@@ -20,6 +20,12 @@
 ---@field types? vim.api.keyset.highlight
 ---@field strings? vim.api.keyset.highlight
 ---@field operators? vim.api.keyset.highlight
+---@field virtual_text? vim.api.keyset.highlight diagnostic virtual text
+---@field inlay_hints? vim.api.keyset.highlight
+---@field mutable? vim.api.keyset.highlight LSP `mutable` modifier
+---@field readonly? vim.api.keyset.highlight LSP `readonly` modifier
+---@field statics? vim.api.keyset.highlight LSP `static` modifier
+---@field globals? vim.api.keyset.highlight LSP `global` / `globalScope` modifiers
 ---@field sidebars? winteriscoming.BgStyle
 ---@field floats? winteriscoming.BgStyle
 
@@ -28,12 +34,24 @@
 ---@field light_style? winteriscoming.Style
 ---@field transparent? boolean
 ---@field terminal_colors? boolean
+---@field hide_inactive_statusline? boolean
 ---@field italics? boolean master switch for every italic
 ---@field bold? boolean master switch for every bold
 ---@field styles? winteriscoming.Styles
 ---@field bright_line_numbers? boolean
 ---@field faithful? boolean exact VS Code values instead of this port's adjustments
 ---@field dim_inactive? boolean
+---@field diagnostics? {underline?: "undercurl"|"underline"|false, virtual_text?: "tinted"|"plain"}
+---@field inlay_hints? "tinted"|"plain"
+---@field contrast? "normal"|"high"
+---@field subtle_comments? boolean|number|{fade?: number, docstrings?: boolean}
+---@field colorblind? false|"red-green"|"blue-yellow"
+---@field saturation? number 0 (greys) to 1 (full color)
+---@field accent? string a name from `require("winteriscoming.config").accents`
+---@field rainbow? "vivid"|"dimmed"|"mono"
+---@field rainbow_variables? boolean
+---@field borderless? boolean pickers without border lines
+---@field bright_borders? boolean float borders in the full accent color
 ---@field lualine_bold? boolean
 ---@field on_colors? fun(colors: winteriscoming.ColorScheme)
 ---@field on_highlights? fun(highlights: winteriscoming.Highlights, colors: winteriscoming.ColorScheme)
@@ -177,4 +195,10 @@
 ---@field hint string
 ---@field ok string
 ---@field todo string
+---@field accent string
+---@field modes {normal: string, insert: string, visual: string, replace: string, command: string, terminal: string}
+---@field picker {prompt: string, list: string, preview: string, sel: string} `borderless` panels
 ---@field rainbow string[]
+---@field brackets table<string, string> rainbow-delimiters colors by its color names
+---@field scopes string[] rainbow indent scopes
+---@field variables? string[] `rainbow_variables` colors

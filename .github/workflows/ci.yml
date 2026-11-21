@@ -5,43 +5,81 @@ on:
     branches: [main]
   pull_request:
 
+permissions: {}
+
 jobs:
   test:
-    name: Smoke tests (Neovim ${{ matrix.version }})
+    name: Tests (Neovim ${{ matrix.version }})
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
         version: [stable, nightly]
     steps:
       - uses: actions/checkout@v4
-      - uses: rhysd/action-setup-vim@v1
+        with:
+          persist-credentials: false
+      - uses: rhysd/action-setup-vim@febef33995d6649302e9d88dda81e071b68f16a7 # v1.6.1
         with:
           neovim: true
           version: ${{ matrix.version }}
       - name: Run smoke tests
         run: nvim --headless --clean -u NONE --cmd "set rtp^=." -l tests/smoke.lua
+      - name: Run extras tests
+        run: nvim --headless --clean -u NONE --cmd "set rtp^=." -l tests/extras.lua
 
   extras:
     name: Extras are up to date
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: rhysd/action-setup-vim@v1
+        with:
+          persist-credentials: false
+      - uses: rhysd/action-setup-vim@febef33995d6649302e9d88dda81e071b68f16a7 # v1.6.1
         with:
           neovim: true
       - name: Regenerate extras
         run: nvim --headless --clean -u NONE --cmd "set rtp^=." -l lua/winteriscoming/extra/init.lua
       - name: Fail if anything changed
-        run: git diff --exit-code -- extras
+        run: |
+          git add --intent-to-add extras
+          git diff --exit-code -- extras
 
   style:
     name: Formatting
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: JohnnyMorganz/stylua-action@v4
+        with:
+          persist-credentials: false
+      - uses: JohnnyMorganz/stylua-action@479972f01e665acfcba96ada452c36608bdbbb5e # v4.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest
+          # pinned so a new StyLua release can't fail a PR that changed no Lua
+          version: 2.6.0
           args: --check lua/ colors/ tests/
+
+  # Lint and security scan in one: pyproject.toml selects ruff's "S" rules
+  # (a port of Bandit), so a local `ruff check` gives the same answer as CI.
+  ruff:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      # Pinned so a new ruff release cannot fail CI on a PR that touched no
+      # Python.
+      - run: pip install ruff==0.17.5
+      - run: ruff check --output-format github .
+      - run: ruff format --check --diff .

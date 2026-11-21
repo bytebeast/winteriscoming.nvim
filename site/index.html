@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>winteriscoming.nvim · John Papa's Winter is Coming for Neovim</title>
+<meta name="description" content="A Neovim and LazyVim port of John Papa's Winter is Coming VS Code theme. Three styles, 75+ plugin integrations, matching themes for 26 tools.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="winteriscoming.nvim">
+<meta property="og:description" content="A Neovim and LazyVim port of John Papa's Winter is Coming VS Code theme. Three styles, 75+ plugin integrations, matching themes for 26 tools.">
+<meta property="og:url" content="https://bytebeast.github.io/winteriscoming.nvim/">
+<meta property="og:image" content="https://bytebeast.github.io/winteriscoming.nvim/images/winter-is-coming-social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script>
+  // Runs before first paint so the page never flashes the wrong style.
+  // Same rule as :colorscheme winteriscoming: light background gets light, dark gets blue.
+  (function () {
+    var styles = ["blue", "black", "light"], s;
+    try { s = localStorage.getItem("winteriscoming-style"); } catch (e) {}
+    if (styles.indexOf(s) < 0) s = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "blue";
+    document.documentElement.dataset.style = s;
+    document.documentElement.classList.add("js");
+  })();
+</script>
+<link rel="stylesheet" href="colors.css">
+<link rel="stylesheet" href="style.css">
+<script src="main.js" defer></script>
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="#top"><span>winteriscoming<span class="dim">.nvim</span></span></a>
+  <nav>
+    <a href="#styles">Styles</a>
+    <a href="#why">Why</a>
+    <a href="#features">Features</a>
+    <a href="#try">Try it</a>
+    <a class="gh" href="https://github.com/bytebeast/winteriscoming.nvim">GitHub</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero wrap">
+  <div class="pitch">
+    <p class="eyebrow">Neovim · LazyVim colorscheme</p>
+    <h1>Winter is Coming,<br>now in Neovim.<br><span class="accent">Navy, charcoal or snow.</span></h1>
+    <p class="lede">A port of John Papa's Winter is Coming VS Code theme, with Treesitter, LSP semantic tokens, 75+ plugin integrations and matching themes for 26 tools.</p>
+    <div class="cta">
+      <a class="btn primary" href="#try">Try it</a>
+      <a class="btn" href="https://github.com/bytebeast/winteriscoming.nvim">View on GitHub</a>
+    </div>
+  </div>
+  <img class="photo" src="images/screenshots/hero.png" width="1520" height="1214" alt="Completion and file explorer in winteriscoming-blue">
+</section>
+
+<section class="demo wrap" aria-label="Live preview">
+  <div class="switcher" role="group" aria-label="Pick a style">
+    <button data-pick="blue" data-style="blue" aria-pressed="true">blue</button>
+    <button data-pick="black" data-style="black" aria-pressed="false">black</button>
+    <button data-pick="light" data-style="light" aria-pressed="false">light</button>
+  </div>
+  <p class="hint">Pick one. The whole page switches.</p>
+
+  <div class="editor" aria-label="Lua code highlighted with winteriscoming">
+    <div class="titlebar">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="tab active">forecast.lua</span><span class="tab">init.lua</span>
+    </div>
+<pre><code><span class="line"><span class="c">-- winter is coming</span></span>
+<span class="line"><span class="kw">local</span> <span class="v">M</span> <span class="op">=</span> <span class="pu">{}</span></span>
+<span class="line"></span>
+<span class="line"><span class="c">---<span class="kd">@param</span> <span class="pa">city</span> <span class="t">string</span></span></span>
+<span class="line"><span class="c">---<span class="kd">@param</span> <span class="pa">days</span><span class="pu">?</span> <span class="t">number</span></span></span>
+<span class="line"><span class="kw">function</span> <span class="v">M</span><span class="pu">.</span><span class="fn">forecast</span><span class="pu">(</span><span class="pa">city</span><span class="pu">,</span> <span class="pa">days</span><span class="pu">)</span></span>
+<span class="line add">  <span class="kw">local</span> <span class="v">report</span> <span class="op">=</span> <span class="pu">{</span> <span class="pr">city</span> <span class="op">=</span> <span class="pa">city</span><span class="pu">,</span> <span class="pr">days</span> <span class="op">=</span> <span class="pa">days</span> <span class="kw">or</span> <span class="n">7</span><span class="pu">,</span> <span class="pr">snow</span> <span class="op">=</span> <span class="b">true</span> <span class="pu">}</span></span>
+<span class="line add">  <span class="kw">if not</span> <span class="v">report</span><span class="pu">.</span><span class="pr">city</span><span class="pu">:</span><span class="fn">match</span><span class="pu">(</span><span class="s">"^<span class="e">%a</span>+$"</span><span class="pu">)</span> <span class="kw">then</span></span>
+<span class="line">    <span class="fb">error</span><span class="pu">((</span><span class="s">"unknown city: <span class="e">%s</span>"</span><span class="pu">):</span><span class="fn">format</span><span class="pu">(</span><span class="pa">city</span><span class="pu">))</span></span>
+<span class="line">  <span class="kw">end</span></span>
+<span class="line chg cur">  <span class="m">vim</span><span class="pu">.</span><span class="fn">notify</span><span class="pu">(</span><span class="s">"forecasting "</span> <span class="op">..</span> <span class="pa">city</span><span class="pu">,</span> <span class="m">vim</span><span class="pu">.</span><span class="pr">log</span><span class="pu">.</span><span class="pr">levels</span><span class="pu">.</span><span class="k">INFO</span><span class="cursor">)</span></span>
+<span class="line">  <span class="kw">return</span> <span class="fb">setmetatable</span><span class="pu">(</span><span class="v">report</span><span class="pu">,</span> <span class="pu">{</span> <span class="pr">__index</span> <span class="op">=</span> <span class="v">M</span> <span class="pu">})</span></span>
+<span class="line"><span class="kw">end</span></span>
+<span class="line"></span>
+<span class="line"><span class="kw">return</span> <span class="v">M</span></span></code></pre>
+    <div class="statusline">
+      <span class="mode">NORMAL</span>
+      <span class="seg">main</span>
+      <span class="seg file">forecast.lua</span>
+      <span class="spacer"></span>
+      <span class="seg">lua</span>
+      <span class="seg pos">11:60</span>
+    </div>
+  </div>
+</section>
+
+<section id="styles" class="wrap">
+  <p class="eyebrow">-- styles</p>
+  <h2>Three styles, straight from VS Code</h2>
+  <p class="sub">Real LazyVim sessions. <code>:colorscheme winteriscoming</code> follows <code>background</code> and switches back to your dark style when it goes dark again.</p>
+
+  <figure class="shot">
+    <img id="shot" src="images/screenshots/hero.png" width="1520" height="1214" alt="winteriscoming-blue in LazyVim">
+    <figcaption><code id="shot-name">winteriscoming-blue</code> <span id="shot-desc">Dark Blue: the signature navy. The default.</span></figcaption>
+  </figure>
+
+  <div class="cards">
+    <button class="card" data-pick="blue" data-style="blue" aria-pressed="true">
+      <span class="swatches"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <code><span class="kw">local</span> <span class="v">sky</span> <span class="op">=</span> <span class="s">"navy"</span></code>
+      <strong>blue</strong><span class="desc">Dark Blue, #011627</span>
+    </button>
+    <button class="card" data-pick="black" data-style="black" aria-pressed="false">
+      <span class="swatches"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <code><span class="kw">local</span> <span class="v">sky</span> <span class="op">=</span> <span class="s">"charcoal"</span></code>
+      <strong>black</strong><span class="desc">Dark Black, #282822</span>
+    </button>
+    <button class="card" data-pick="light" data-style="light" aria-pressed="false">
+      <span class="swatches"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <code><span class="kw">local</span> <span class="v">sky</span> <span class="op">=</span> <span class="s">"snow"</span></code>
+      <strong>light</strong><span class="desc">Light, the original mapping</span>
+    </button>
+  </div>
+</section>
+
+<section id="why" class="wrap">
+  <p class="eyebrow">-- why winteriscoming</p>
+  <h2>The theme you know, at home in a terminal</h2>
+  <div class="why">
+    <ul class="reasons">
+      <li><strong>The real palette.</strong> Every color comes from John Papa's theme. <code>faithful = true</code> brings back the exact VS Code values.</li>
+      <li><strong>Tuned for a terminal.</strong> Where VS Code leaned on italics to tell blues apart, functions, variables and constants are nudged apart instead.</li>
+      <li><strong>VS Code's details.</strong> Declared fields and accessed properties look different, and library globals get the library teal.</li>
+      <li><strong>Built for color blindness.</strong> Red-green and blue-yellow modes remap diffs, git signs and diagnostics, picked by simulating each deficiency.</li>
+      <li><strong>High contrast on demand.</strong> One option lifts every syntax color to WCAG AA, plus comments and line numbers.</li>
+      <li><strong>Roles, not hex codes.</strong> Change <code>colors.syntax.keyword</code> or the <code>ice</code> it points at, and every language follows.</li>
+      <li><strong>Checked against the real tools.</strong> The Helix, Zed, Yazi, k9s, eza, btop and fish themes, among others, are tested against each tool's own list of theme keys.</li>
+    </ul>
+    <figure class="palette">
+      <figcaption>The palettes</figcaption>
+      <img src="images/palette.png" width="2296" height="380" loading="lazy" alt="Palette swatches for the blue, black and light styles">
+      <p class="note">Shades marked as added in the source cover what Neovim needs and the original never defined, like an orange.</p>
+    </figure>
+  </div>
+</section>
+
+<section id="features" class="wrap">
+  <p class="eyebrow">-- features</p>
+  <h2>Everything you'd expect, and a few things you wouldn't</h2>
+  <ul class="features">
+    <li><strong>75+ plugin integrations</strong>Auto-detected from lazy.nvim or vim.pack</li>
+    <li><strong>26 tool themes</strong>Terminals, CLI tools, Vim, Zed, Helix</li>
+    <li><strong>Colorblind modes</strong><code>"red-green"</code> or <code>"blue-yellow"</code></li>
+    <li><strong>High contrast</strong>Every syntax color at AA, brighter comments and line numbers</li>
+    <li><strong>Subtle comments</strong>Fade comments behind code, optionally keep docstrings</li>
+    <li><strong>Saturation and accent</strong>Mute the colors, keep the contrast, pick an accent</li>
+    <li><strong>Transparent and borderless</strong>For terminal blur and shade-framed pickers</li>
+    <li><strong>Rainbow variables</strong>A color per local variable, JetBrains-style</li>
+    <li><strong>Two hooks</strong><code>on_colors</code> and <code>on_highlights</code></li>
+    <li><strong>Lualine themes</strong>One per style, plus one that follows yours</li>
+    <li><strong><code>:checkhealth</code></strong>Warns when your overrides hurt contrast</li>
+    <li><strong>Tested on stable and nightly</strong>CI on every push</li>
+  </ul>
+
+  <p class="tools-label">Matching themes for</p>
+  <ul class="tools">
+    <li>Alacritty</li><li>bat</li><li>btop</li><li>delta</li><li>eza</li><li>fish</li><li>foot</li><li>fzf</li><li>Ghostty</li><li>Helix</li><li>iTerm2</li><li>k9s</li><li>Kitty</li><li>lazygit</li><li>st</li><li>Termux</li><li>tmux</li><li>Vim</li><li>WezTerm</li><li>Windows Terminal</li><li>Xresources</li><li>Yazi</li><li>zathura</li><li>Zed</li><li>Zellij</li><li>Zettlr</li>
+  </ul>
+
+  <div class="gallery">
+    <figure><button class="zoom" data-zoom><img src="images/screenshots/hero.png" width="1520" height="1214" loading="lazy" alt="Completion and explorer in winteriscoming-blue"></button><figcaption>Completion and explorer · blue</figcaption></figure>
+    <figure><button class="zoom" data-zoom><img src="images/screenshots/picker.png" width="1520" height="1214" loading="lazy" alt="snacks picker in winteriscoming-black"></button><figcaption>Picker · black</figcaption></figure>
+    <figure><button class="zoom" data-zoom><img src="images/screenshots/hover-light.png" width="1520" height="1214" loading="lazy" alt="LSP hover and diagnostics in winteriscoming-light"></button><figcaption>Diagnostics and hover · light</figcaption></figure>
+    <figure><button class="zoom" data-zoom><img src="images/screenshots/dashboard.png" width="1520" height="1214" loading="lazy" alt="dashboard in winteriscoming-blue"></button><figcaption>Dashboard · blue</figcaption></figure>
+  </div>
+  <dialog id="lightbox" aria-label="Screenshot">
+    <img alt="">
+    <p></p>
+  </dialog>
+</section>
+
+<section id="try" class="wrap">
+  <p class="eyebrow">-- try it</p>
+  <h2>Bundle up</h2>
+  <p class="sub">A true-color terminal and a recent Neovim. Every option is in the <a href="https://github.com/bytebeast/winteriscoming.nvim#configuration">README</a>.</p>
+
+  <div class="install">
+    <div class="tablist" role="tablist" aria-label="Plugin manager">
+      <button role="tab" data-tab="lazyvim" aria-selected="true">LazyVim</button>
+      <button role="tab" data-tab="lazy" aria-selected="false">lazy.nvim</button>
+      <button role="tab" data-tab="pack" aria-selected="false">vim.pack</button>
+    </div>
+    <div class="panel" data-panel="lazyvim">
+      <button class="copy" data-copy>copy</button>
+<pre><code><span class="c">-- ~/.config/nvim/lua/plugins/winteriscoming.lua</span>
+<span class="kw">return</span> <span class="pu">{</span>
+  <span class="pu">{</span> <span class="s">"bytebeast/winteriscoming.nvim"</span><span class="pu">,</span> <span class="pr">lazy</span> <span class="op">=</span> <span class="b">false</span><span class="pu">,</span> <span class="pr">priority</span> <span class="op">=</span> <span class="n">1000</span><span class="pu">,</span> <span class="pr">opts</span> <span class="op">=</span> <span class="pu">{}</span> <span class="pu">},</span>
+  <span class="pu">{</span> <span class="s">"LazyVim/LazyVim"</span><span class="pu">,</span> <span class="pr">opts</span> <span class="op">=</span> <span class="pu">{</span> <span class="pr">colorscheme</span> <span class="op">=</span> <span class="s">"winteriscoming"</span> <span class="pu">}</span> <span class="pu">},</span>
+<span class="pu">}</span></code></pre>
+    </div>
+    <div class="panel" data-panel="lazy">
+      <button class="copy" data-copy>copy</button>
+<pre><code><span class="pu">{</span>
+  <span class="s">"bytebeast/winteriscoming.nvim"</span><span class="pu">,</span>
+  <span class="pr">lazy</span> <span class="op">=</span> <span class="b">false</span><span class="pu">,</span>
+  <span class="pr">priority</span> <span class="op">=</span> <span class="n">1000</span><span class="pu">,</span>
+  <span class="pr">config</span> <span class="op">=</span> <span class="kw">function</span><span class="pu">()</span>
+    <span class="fb">require</span><span class="pu">(</span><span class="s">"winteriscoming"</span><span class="pu">).</span><span class="fn">setup</span><span class="pu">({</span> <span class="pr">style</span> <span class="op">=</span> <span class="s">"blue"</span> <span class="pu">})</span>
+    <span class="m">vim</span><span class="pu">.</span><span class="pr">cmd</span><span class="pu">.</span><span class="fn">colorscheme</span><span class="pu">(</span><span class="s">"winteriscoming"</span><span class="pu">)</span>
+  <span class="kw">end</span><span class="pu">,</span>
+<span class="pu">}</span></code></pre>
+    </div>
+    <div class="panel" data-panel="pack">
+      <button class="copy" data-copy>copy</button>
+<pre><code><span class="c">-- Neovim 0.12+</span>
+<span class="m">vim</span><span class="pu">.</span><span class="pr">pack</span><span class="pu">.</span><span class="fn">add</span><span class="pu">({</span> <span class="s">"https://github.com/bytebeast/winteriscoming.nvim"</span> <span class="pu">})</span>
+<span class="m">vim</span><span class="pu">.</span><span class="pr">cmd</span><span class="pu">.</span><span class="fn">colorscheme</span><span class="pu">(</span><span class="s">"winteriscoming-black"</span><span class="pu">)</span></code></pre>
+    </div>
+  </div>
+  <p class="star">Like it? A <a href="https://github.com/bytebeast/winteriscoming.nvim/stargazers">star on GitHub</a> helps other people find it.</p>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>MIT licensed · palette by <a href="https://github.com/johnpapa/vscode-winteriscoming">John Papa</a></span>
+  <a href="https://github.com/bytebeast/winteriscoming.nvim">github.com/bytebeast/winteriscoming.nvim</a>
+</footer>
+
+</body>
+</html>

@@ -17,7 +17,7 @@ CONTENTS                                             *winteriscoming-contents*
 
 A port of John Papa's Winter is Coming theme for VS Code, with Treesitter,
 LSP semantic tokens, and highlights for many plugins. Integrations load
-automatically for the plugins lazy.nvim has installed.
+automatically for the plugins lazy.nvim or |vim.pack| has installed.
 
 ==============================================================================
 2. STYLES                                              *winteriscoming-styles*
@@ -53,6 +53,7 @@ All options with their defaults: >lua
     light_style = "light",   -- used when 'background' is "light"
     transparent = false,     -- don't set the editor background
     terminal_colors = true,  -- set g:terminal_color_*
+    hide_inactive_statusline = false,
     italics = true,          -- false drops every italic
     bold = true,             -- false drops every bold
     styles = {
@@ -60,19 +61,34 @@ All options with their defaults: >lua
       functions = {}, variables = {},
       properties = {}, attributes = {}, parameters = {},
       types = {}, strings = {}, operators = {},
+      virtual_text = {}, inlay_hints = {},
+      mutable = {}, readonly = {}, statics = {}, globals = {},
       sidebars = "dark",     -- "dark", "transparent" or "normal"
       floats = "dark",       -- "dark", "transparent" or "normal"
     },
     bright_line_numbers = false,
     faithful = false,
     dim_inactive = false,
+    contrast = "normal",     -- or "high"
+    subtle_comments = false,
+    colorblind = false,      -- or "red-green", "blue-yellow"
+    saturation = 1,
+    accent = "blue",
+    rainbow = "vivid",       -- or "dimmed", "mono"
+    rainbow_variables = false,
+    diagnostics = { underline = "undercurl", virtual_text = "tinted" },
+    inlay_hints = "tinted",  -- or "plain"
+    borderless = false,
+    bright_borders = false,
     lualine_bold = false,
     on_colors = function(colors) end,
     on_highlights = function(highlights, colors) end,
     cache = true,
-    plugins = { all = package.loaded.lazy == nil, auto = true },
+    plugins = { all = nil, auto = true },
   })
 <
+Invalid values are reported once and replaced by their defaults.
+
                                               *winteriscoming-opt-italics*
 italics ~
   Master switch. When false, no group is italic, whatever `styles` says.
@@ -102,10 +118,54 @@ faithful ~
   (a quieter sage instead of the string mint) and the Dark
   Black selection. Set to true to use the exact VS Code values.
 
+                                             *winteriscoming-opt-contrast*
+contrast ~
+  "high" lifts every syntax color below WCAG AA (4.5:1) up to it, and
+  brightens comments, line numbers, inlay hints and muted UI text.
+
+                                      *winteriscoming-opt-subtle_comments*
+subtle_comments ~
+  Fade comments toward the background: true (= 0.5), a fade from 0 to 1,
+  or `{ fade = 0.7, docstrings = false }`. Measured in contrast, never
+  below 1.6:1. A comment color set in `on_colors` is left alone.
+
+                                           *winteriscoming-opt-colorblind*
+colorblind ~
+  "red-green" or "blue-yellow": git signs, diffs and diagnostics use
+  colors that stay apart for that color vision deficiency. Syntax colors
+  are untouched.
+
+                                           *winteriscoming-opt-saturation*
+saturation ~
+  0 (greys) to 1 (full color). Each color keeps its contrast; git, diff
+  and diagnostic colors keep at least 70% of their color.
+
+                                               *winteriscoming-opt-accent*
+accent ~
+  Titles, badges, the selected tab, float borders and the normal-mode
+  statusline. One of the names in `require("winteriscoming.config").accents`.
+
+                                              *winteriscoming-opt-rainbow*
+rainbow ~
+  Rainbow delimiters and indent scopes: "vivid", "dimmed" (quieter than
+  code) or "mono" (shades of grey by nesting depth).
+
+                                    *winteriscoming-opt-rainbow_variables*
+rainbow_variables ~
+  A color per local variable and parameter, picked from its name, as in
+  JetBrains IDEs. Needs an LSP that sends semantic tokens.
+
+                                           *winteriscoming-opt-borderless*
+borderless ~
+  Telescope, snacks and fzf-lua pickers without border lines: prompt, list
+  and preview are told apart by shade, titles become badges.
+
                                               *winteriscoming-opt-plugins*
 plugins ~
-  `auto` enables an integration only when lazy.nvim has the plugin.
-  `all` enables everything. Force one with its name: >lua
+  `auto` enables an integration only when lazy.nvim or |vim.pack| has the
+  plugin. `all = true` enables everything; the default (nil) does that only
+  when neither plugin manager is in use. Force one with its module or repo
+  name: >lua
     plugins = { telescope = true, ["neo-tree"] = false }
 <
 ==============================================================================
@@ -126,16 +186,21 @@ palette color updates every role that uses it: >lua
 Get the colors for statusline components and the like: >lua
   local colors = require("winteriscoming").colors()
 <
+`:checkhealth winteriscoming` lists the active integrations and options, and
+warns when `on_colors` pushes a syntax color below WCAG AA.
 ==============================================================================
 6. PLUGIN INTEGRATIONS                                *winteriscoming-plugins*
 
-aerial, alpha, avante, blink.cmp, bufferline, codecompanion, copilot,
-dashboard, diffview, fidget, flash, fzf-lua, gitsigns, grug-far, harpoon,
-headlines, indent-blankline, lazy.nvim, leap, lspsaga, mason, mini.nvim
-modules, neo-tree, neogit, neotest, noice, nvim-cmp, nvim-dap, nvim-dap-ui,
-nvim-navic, nvim-notify, nvim-tree, nvim-treesitter-context, nvim-ufo, oil,
-rainbow-delimiters, render-markdown, sidekick, snacks.nvim, telescope,
-todo-comments, trouble, vim-illuminate, which-key, yanky.
+aerial, alpha, avante, barbar, blink.cmp, blink.pairs, bufferline, coc.nvim,
+codecompanion, codediff, copilot, dashboard, diffview, dropbar, fidget,
+flash, fzf-lua, git-conflict, gitsigns, grug-far, harpoon, headlines,
+hlargs, hop, hover.nvim, indent-blankline, lazy.nvim, leap, lspsaga,
+markview, mason, mini.nvim modules, minuet-ai, neo-tree, neogit, neotest,
+noice, nvim-cmp, nvim-cursorword, nvim-dap, nvim-dap-ui, nvim-navic,
+nvim-notify, nvim-scrollbar, nvim-tree, nvim-treesitter-context, nvim-ufo,
+octo, oil, orgmode, outline, overseer, rainbow-delimiters, render-markdown,
+sidekick, snacks.nvim, telescope, todo-comments, trouble, vim-gitgutter,
+vim-illuminate, virt-column, which-key, yanky.
 
 ==============================================================================
 7. LUALINE AND BUFFERLINE                             *winteriscoming-lualine*
@@ -162,8 +227,9 @@ under another colorscheme.
 ==============================================================================
 8. EXTRAS                                              *winteriscoming-extras*
 
-Matching themes for alacritty, bat, delta, fzf, ghostty, iTerm2, kitty,
-lazygit, tmux, Windows Terminal and wezterm live in the `extras/` folder of
-the plugin.
+Matching themes for alacritty, bat, btop, delta, eza, fish, foot, fzf,
+ghostty, Helix, iTerm2, k9s, kitty, lazygit, st, Termux, tmux, Vim, wezterm,
+Windows Terminal, Xresources, Yazi, zathura, Zed, Zellij and Zettlr live in
+the `extras/` folder of the plugin.
 
  vim:tw=78:ts=8:noet:ft=help:norl:

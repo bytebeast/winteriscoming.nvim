@@ -15,15 +15,15 @@ function M.get(style)
 
   local hl = {}
   hl.normal = {
-    a = { bg = c.blue, fg = c.on_accent },
+    a = { bg = c.modes.normal, fg = c.on_accent },
     b = { bg = c.is_light and c.bg_widget or c.bg_select, fg = c.is_light and c.blue_deep or c.fg_bright },
     c = { bg = c.bg_statusline, fg = c.fg_sidebar },
   }
-  hl.insert = mode(c.green)
-  hl.visual = mode(c.lavender)
-  hl.replace = mode(c.red)
-  hl.command = mode(c.cream)
-  hl.terminal = mode(c.teal)
+  hl.insert = mode(c.modes.insert)
+  hl.visual = mode(c.modes.visual)
+  hl.replace = mode(c.modes.replace)
+  hl.command = mode(c.modes.command)
+  hl.terminal = mode(c.modes.terminal)
   hl.inactive = {
     a = { bg = c.bg_statusline, fg = c.fg_muted },
     b = { bg = c.bg_statusline, fg = c.fg_muted, gui = "bold" },

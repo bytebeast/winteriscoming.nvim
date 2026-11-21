@@ -16,7 +16,7 @@ function M.get(c, opts)
     SagaLightBulb    = { fg = c.cream },
     SagaCount        = { fg = c.purple },
     SagaFinderFname  = { fg = c.sky },
-    ActionPreviewTitle = { fg = c.blue },
+    ActionPreviewTitle = { fg = c.accent },
   }
   return ret
 end

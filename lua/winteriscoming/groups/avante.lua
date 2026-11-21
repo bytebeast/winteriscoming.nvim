@@ -7,8 +7,8 @@ M.url = "https://github.com/yetone/avante.nvim"
 function M.get(c, opts)
   -- stylua: ignore
   local ret = {
-    AvanteTitle             = { fg = c.on_accent, bg = c.blue, bold = true },
-    AvanteReversedTitle     = { fg = c.blue },
+    AvanteTitle             = { fg = c.on_accent, bg = c.accent, bold = true },
+    AvanteReversedTitle     = { fg = c.accent },
     AvanteSubtitle          = { fg = c.on_accent, bg = c.ice },
     AvanteReversedSubtitle  = { fg = c.ice },
     AvanteThirdTitle        = { fg = c.fg_light, bg = c.bg_widget },

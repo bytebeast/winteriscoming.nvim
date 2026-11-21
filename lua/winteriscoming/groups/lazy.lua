@@ -9,8 +9,8 @@ function M.get(c, opts)
   local ret = {
     LazyNormal          = { fg = c.fg, bg = c.bg_float },
     LazyButton          = { fg = c.fg_light, bg = c.bg_widget },
-    LazyButtonActive    = { fg = c.on_accent, bg = c.blue, bold = true },
-    LazyH1              = { fg = c.on_accent, bg = c.blue, bold = true },
+    LazyButtonActive    = { fg = c.on_accent, bg = c.accent, bold = true },
+    LazyH1              = { fg = c.on_accent, bg = c.accent, bold = true },
     LazyH2              = { fg = c.blue, bold = true },
     LazySpecial         = { fg = c.ice },
     LazyReasonPlugin    = { fg = c.purple },

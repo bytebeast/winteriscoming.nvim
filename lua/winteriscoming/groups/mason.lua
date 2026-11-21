@@ -8,12 +8,12 @@ function M.get(c, opts)
   -- stylua: ignore
   local ret = {
     MasonNormal                      = { fg = c.fg, bg = c.bg_float },
-    MasonHeader                      = { fg = c.on_accent, bg = c.blue, bold = true },
+    MasonHeader                      = { fg = c.on_accent, bg = c.accent, bold = true },
     MasonHeaderSecondary             = { fg = c.on_accent, bg = c.ice, bold = true },
     MasonHeading                     = { fg = c.blue, bold = true },
     MasonHighlight                   = { fg = c.ice },
     MasonHighlightBlock              = { fg = c.on_accent, bg = c.ice },
-    MasonHighlightBlockBold          = { fg = c.on_accent, bg = c.blue, bold = true },
+    MasonHighlightBlockBold          = { fg = c.on_accent, bg = c.accent, bold = true },
     MasonHighlightSecondary          = { fg = c.cream },
     MasonHighlightBlockSecondary     = { fg = c.on_accent, bg = c.cream },
     MasonHighlightBlockBoldSecondary = { fg = c.on_accent, bg = c.cream, bold = true },

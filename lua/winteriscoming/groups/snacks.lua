@@ -40,7 +40,7 @@ function M.get(c, opts)
     SnacksDashboardSpecial    = { fg = c.purple },
     SnacksDashboardDir        = { fg = c.fg_muted },
     SnacksDashboardFile       = { fg = c.fg_light },
-    SnacksDashboardTitle      = { fg = c.blue, bold = true },
+    SnacksDashboardTitle      = { fg = c.accent, bold = true },
     -- Profiler / footer badges
     SnacksProfilerIconInfo    = { fg = c.ice, bg = Util.blend_bg(c.ice, 0.25) },
     SnacksProfilerBadgeInfo   = { fg = c.ice, bg = Util.blend_bg(c.ice, 0.1) },
@@ -69,7 +69,7 @@ function M.get(c, opts)
     SnacksPickerInputBorder   = { fg = c.prompt, bg = c.bg_float },
     SnacksPickerInputTitle    = { fg = c.prompt, bg = c.bg_float },
     SnacksPickerBoxTitle      = { fg = c.prompt, bg = c.bg_float },
-    SnacksPickerTitle         = { fg = c.blue, bg = c.bg_float, bold = true },
+    SnacksPickerTitle         = { fg = c.accent, bg = c.bg_float, bold = true },
     SnacksPickerPrompt        = { fg = c.ice },
     SnacksPickerMatch         = { fg = c.ice, bold = true },
     SnacksPickerSelected      = { fg = c.cream },
@@ -85,7 +85,22 @@ function M.get(c, opts)
     SnacksDiffLabel           = { fg = c.ice, bold = true },
     SnacksGhDiffHeader        = { fg = c.ice, bg = Util.blend_bg(c.ice, 0.1) },
   }
-  for i, color in ipairs(c.rainbow) do
+  if opts.borderless then
+    local p = c.picker
+    -- snacks derives <Part>, <Part>Border, <Part>Title for each picker part
+    for part, panel in pairs({ Input = p.prompt, List = p.list, Preview = p.preview, Box = p.list, [""] = p.list }) do
+      ret["SnacksPicker" .. part] = { fg = c.fg, bg = panel }
+      ret["SnacksPicker" .. part .. "Border"] = { fg = panel, bg = panel }
+    end
+    ret.SnacksPickerPrompt = { fg = c.ice, bg = p.prompt }
+    ret.SnacksPickerListCursorLine = { bg = p.sel }
+    ret.SnacksPickerInputTitle = { fg = c.on_accent, bg = c.prompt, bold = true }
+    ret.SnacksPickerBoxTitle = { fg = c.on_accent, bg = c.prompt, bold = true }
+    ret.SnacksPickerTitle = { fg = c.on_accent, bg = c.accent, bold = true }
+    -- the picker box title goes through snacks' generic title group
+    ret.SnacksTitle = { fg = c.on_accent, bg = c.accent, bold = true }
+  end
+  for i, color in ipairs(c.scopes) do -- follows `rainbow`
     ret["SnacksIndent" .. i] = { fg = color, nocombine = true }
   end
   return ret

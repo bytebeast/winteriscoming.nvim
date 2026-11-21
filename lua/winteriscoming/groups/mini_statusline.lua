@@ -11,12 +11,12 @@ function M.get(c, opts)
     MiniStatuslineFileinfo    = { fg = c.fg_light, bg = c.bg_widget },
     MiniStatuslineFilename    = { fg = c.fg_dark, bg = c.bg_statusline },
     MiniStatuslineInactive    = { fg = c.fg_muted, bg = c.bg_statusline },
-    MiniStatuslineModeNormal  = { fg = c.on_accent, bg = c.blue, bold = true },
-    MiniStatuslineModeInsert  = { fg = c.on_accent, bg = c.green, bold = true },
-    MiniStatuslineModeVisual  = { fg = c.on_accent, bg = c.lavender, bold = true },
-    MiniStatuslineModeReplace = { fg = c.on_accent, bg = c.red, bold = true },
-    MiniStatuslineModeCommand = { fg = c.on_accent, bg = c.cream, bold = true },
-    MiniStatuslineModeOther   = { fg = c.on_accent, bg = c.teal, bold = true },
+    MiniStatuslineModeNormal  = { fg = c.on_accent, bg = c.modes.normal, bold = true },
+    MiniStatuslineModeInsert  = { fg = c.on_accent, bg = c.modes.insert, bold = true },
+    MiniStatuslineModeVisual  = { fg = c.on_accent, bg = c.modes.visual, bold = true },
+    MiniStatuslineModeReplace = { fg = c.on_accent, bg = c.modes.replace, bold = true },
+    MiniStatuslineModeCommand = { fg = c.on_accent, bg = c.modes.command, bold = true },
+    MiniStatuslineModeOther   = { fg = c.on_accent, bg = c.modes.terminal, bold = true },
   }
   return ret
 end
