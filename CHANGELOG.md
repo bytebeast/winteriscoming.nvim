@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.1 (2026-11-21)
+
+### Bug Fixes
+
+- **folds**: keep folded lines apart from changed lines in diffs
+
 ## v1.2.0 (2026-11-21)
 
 ### Features
