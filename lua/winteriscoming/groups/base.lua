@@ -116,7 +116,8 @@ function M.get(c, opts)
     DiffChange                  = { bg = c.diff.change },
     -- fg colors the `╱` filler LazyVim draws for deleted lines; keep it faint
     DiffDelete                  = { fg = Util.blend_bg(c.red, 0.38), bg = c.diff.delete },
-    DiffText                    = { bg = c.diff.text },
+    DiffText                    = { bg = c.diff.text, underline = true, sp = c.diff_text_underline },
+    DiffTextAdd                 = { bg = c.diff.text_add, underline = true, sp = c.git.add },
     Added                       = { fg = c.git.add },
     Changed                     = { fg = c.git.change },
     Removed                     = { fg = c.git.delete },

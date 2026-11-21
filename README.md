@@ -274,6 +274,35 @@ opts = {
   end,
   on_highlights = function(hl, c)
     hl.CursorLineNr = { fg = c.cream, bold = true }
+### Diffs
+
+Changed text inside a changed line (`DiffText`) is underlined in winter blue as
+well as tinted, so a one-character edit doesn't disappear into the line's
+tint. Added text inside a changed line (`DiffTextAdd`) is tinted and
+underlined in green. `DiffTextAdd` needs Neovim 0.12+ with `inline:char` in
+`'diffopt'`. That's the 0.12 default, but if your config sets `diffopt`, add it
+back:
+
+```lua
+vim.opt.diffopt:append("inline:char")
+```
+
+To drop the underlines, override the two groups:
+
+```lua
+on_highlights = function(hl, c)
+  hl.DiffText = { bg = c.diff.text }
+  hl.DiffTextAdd = { bg = c.diff.text_add }
+end,
+```
+
+Inside tmux, colored underlines need this in `~/.tmux.conf` (tmux 3.2+, then
+detach and reattach), or they come out in the text color:
+
+```tmux
+set -as terminal-features ",*:usstyle"
+```
+
     hl.LineNr = { fg = c.fg_muted }
   end,
 }

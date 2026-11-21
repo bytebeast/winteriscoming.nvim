@@ -174,7 +174,8 @@
 ---@field is_light boolean
 ---@field on_accent string text on saturated accents
 ---@field black string
----@field diff {add: string, delete: string, change: string, text: string}
+---@field diff {add: string, delete: string, change: string, text: string, text_add: string}
+---@field diff_text_underline string
 ---@field border_highlight string
 ---@field line_nr string
 ---@field line_nr_cursor string
