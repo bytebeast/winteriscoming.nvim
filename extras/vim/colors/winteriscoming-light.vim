@@ -63,7 +63,7 @@ hi FloatShadow guibg=#011627 gui=NONE cterm=NONE
 hi FloatShadowThrough guibg=#011627 gui=NONE cterm=NONE
 hi FloatTitle guifg=#2f86d2 guibg=#f3f3f3 gui=bold cterm=NONE
 hi FoldColumn guifg=#5f7e97 guibg=#ffffff gui=NONE cterm=NONE
-hi Folded guifg=#207bb8 guibg=#e6f0fa gui=NONE cterm=NONE
+hi Folded guifg=#207bb8 guibg=#f6f6f6 gui=NONE cterm=NONE
 hi Function guifg=#b1108e gui=NONE cterm=NONE
 hi Identifier guifg=#6b6b6b gui=NONE cterm=NONE
 hi Ignore guifg=#b4b6c0 gui=NONE cterm=NONE

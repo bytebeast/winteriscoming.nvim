@@ -287,6 +287,25 @@ back:
 vim.opt.diffopt:append("inline:char")
 ```
 
+Folded lines use a neutral shade darker than the editor, so a fold never looks
+like a changed line.
+
+With `cursorline` on, Neovim underlines the whole cursor line in diff windows
+(the diff background hides `CursorLine`'s, so it marks the line another way).
+It happens with any colorscheme whose `CursorLine` sets only a background,
+kissaten included. To keep only the changed text underlined, highlight just
+the line number in diff windows:
+
+```lua
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter", "OptionSet" }, {
+  callback = function()
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      vim.wo[win].cursorlineopt = vim.wo[win].diff and "number" or vim.go.cursorlineopt
+    end
+  end,
+})
+```
+
 To drop the underlines, override the two groups:
 
 ```lua

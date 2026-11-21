@@ -35,6 +35,14 @@ for _, style in ipairs({ "blue", "black", "light" }) do
     local hl = vim.api.nvim_get_hl(0, { name = g, link = false })
     check(hl.underline and hl.sp and hl.bg, style .. ": " .. g .. " should be tinted and underlined")
   end
+
+  -- a fold must not look like a changed line or the cursorline
+  local fold = vim.api.nvim_get_hl(0, { name = "Folded", link = false }).bg
+  for _, g in ipairs({ "DiffChange", "DiffAdd", "DiffDelete" }) do
+    local bg = vim.api.nvim_get_hl(0, { name = g, link = false }).bg
+    local ratio = require("winteriscoming.util").contrast(("#%06x"):format(fold), ("#%06x"):format(bg))
+    check(ratio >= 1.05, ("%s: Folded too close to %s (%.2f:1)"):format(style, g, ratio))
+  end
 end
 
 -- defaults: comments and keywords italic, other code not

@@ -275,6 +275,12 @@ function M.setup(opts)
   -- DiffText is only a shade stronger than DiffChange, too little to spot a
   -- one-character edit, so it is underlined as well
   c.diff_text_underline = hue.change
+  -- Folds were a faint blue tint, the same as DiffChange, so a folded run in
+  -- a diff looked like a changed line. A neutral shade darker than the editor
+  -- keeps them apart (dark styles: the opposite side from the diff and
+  -- cursorline tints; Light has no room above white, but stays grey and lighter
+  -- than the blue change tint).
+  c.bg_fold = Util.reduce_contrast("#000000", c.bg, 1.08)
   c.git.ignore = c.fg_muted
   c.git.conflict = c.git.conflict or c.ember
 

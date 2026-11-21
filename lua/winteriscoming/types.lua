@@ -109,6 +109,7 @@
 ---@field bg_dark string
 ---@field bg_darker string
 ---@field bg_highlight string
+---@field bg_fold string
 ---@field bg_widget string
 ---@field bg_input string
 ---@field bg_visual string
