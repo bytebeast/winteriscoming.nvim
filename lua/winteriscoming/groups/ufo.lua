@@ -1,5 +1,3 @@
-local Util = require("winteriscoming.util")
-
 local M = {}
 
 M.url = "https://github.com/kevinhwang91/nvim-ufo"
@@ -11,7 +9,7 @@ function M.get(c, opts)
   local ret = {
     UfoFoldedEllipsis = { fg = c.fg_muted },
     UfoFoldedFg       = { fg = c.fg_light },
-    UfoFoldedBg       = { bg = Util.blend_bg(c.blue, 0.12) },
+    UfoFoldedBg       = { bg = c.bg_fold },
   }
   return ret
 end

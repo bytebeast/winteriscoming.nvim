@@ -45,7 +45,7 @@ function M.get(c, opts)
     SignColumn                  = { fg = c.fg_gutter, bg = bg },
     SignColumnSB                = { fg = c.fg_gutter, bg = c.bg_sidebar },
     FoldColumn                  = { fg = c.fg_muted, bg = bg },
-    Folded                      = { fg = c.sky, bg = Util.blend_bg(c.blue, 0.12) },
+    Folded                      = { fg = c.sky, bg = c.bg_fold },
     CursorLineFold              = { fg = c.blue },
     CursorLineSign              = {},
 
