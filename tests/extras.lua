@@ -578,6 +578,15 @@ do
   end
 end
 
+-- every extras folder (fonts included) has a setup guide
+for name, kind in vim.fs.dir("extras") do
+  if kind == "directory" then
+    local path = ("extras/%s/README.md"):format(name)
+    local ok, text = pcall(vim.fn.readfile, path)
+    check(ok and table.concat(text, "\n"):find("## Install", 1, true), path .. " is missing or has no Install section")
+  end
+end
+
 if fails > 0 then
   io.stderr:write(fails .. " failures\n")
   os.exit(1)
