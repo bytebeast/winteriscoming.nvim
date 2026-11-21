@@ -1,5 +1,26 @@
 # Changelog
 
+## v1.1.0 (2026-11-21)
+
+### Features
+
+- **initial**: initial commit (AH-2026101959530)
+- **preview**: initial add of social-preview (AH-2026101961075)
+- **italic**: fix italic (AH-2026101965921)
+- port kissaten options, integrations and extras
+
+### Bug Fixes
+
+- **tests**: update smoke.lua (AH-2026101970264)
+- **theme**: background switch, bufferline icons, grug-far groups
+
+### Documentation
+
+- **readme**: add palette sheet, style and plugin screenshots
+- add Pages site and document the new options
+
+<!-- also in this release: ci, test -->
+
 ## 1.0.0 (2026-10-19)
 
 First release.
