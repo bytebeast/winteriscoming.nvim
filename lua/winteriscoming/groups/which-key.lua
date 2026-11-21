@@ -13,7 +13,7 @@ function M.get(c, opts)
     WhichKeySeparator = { fg = c.fg_muted },
     WhichKeyNormal    = { bg = c.bg_sidebar },
     WhichKeyBorder    = { fg = c.border_highlight, bg = c.bg_sidebar },
-    WhichKeyTitle     = { fg = c.blue, bg = c.bg_sidebar, bold = true },
+    WhichKeyTitle     = { fg = c.accent, bg = c.bg_sidebar, bold = true },
     WhichKeyValue     = { fg = c.fg_muted },
   }
   return ret

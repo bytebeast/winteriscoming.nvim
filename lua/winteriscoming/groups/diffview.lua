@@ -9,7 +9,7 @@ function M.get(c, opts)
   local ret = {
     DiffviewNormal              = { fg = c.fg_sidebar, bg = c.bg_sidebar },
     DiffviewWinSeparator        = { fg = c.border, bg = c.bg_sidebar },
-    DiffviewFilePanelTitle      = { fg = c.blue, bold = true },
+    DiffviewFilePanelTitle      = { fg = c.accent, bold = true },
     DiffviewFilePanelCounter    = { fg = c.fg_light },
     DiffviewFilePanelRootPath   = { fg = c.lavender, bold = true },
     DiffviewFilePanelFileName   = { fg = c.fg_light },

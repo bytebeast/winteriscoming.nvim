@@ -5,7 +5,7 @@ local M = {}
 function M.get(c, opts)
   local s = c.syntax
   -- stylua: ignore
-  return {
+  local ret = {
     ["@lsp.type.boolean"]                      = "@boolean",
     ["@lsp.type.builtinType"]                  = "@type.builtin",
     ["@lsp.type.class"]                        = "@type",
@@ -62,6 +62,31 @@ function M.get(c, opts)
     ["@lsp.typemod.variable.injected"]         = "@variable",
     ["@lsp.typemod.variable.static"]           = "@constant",
   }
+
+  -- Modifiers the language server knows and the parser doesn't. Each is an
+  -- attribute-only style that stacks on the token's color.
+  local st = opts.styles
+  local function mod(groups, style)
+    if next(style) then
+      for _, group in ipairs(groups) do
+        ret[group] = { style = style }
+      end
+    end
+  end
+  mod({ "@lsp.mod.mutable", "@lsp.typemod.variable.mutable.rust" }, st.mutable)
+  if next(st.mutable) then
+    -- Rust parameters keep their color: the mut style just stacks on it
+    ret["@lsp.typemod.parameter.mutable.rust"] = { fg = s.param, style = st.mutable }
+  end
+  mod({ "@lsp.mod.readonly" }, st.readonly)
+  mod({ "@lsp.mod.static" }, st.statics)
+  mod({ "@lsp.mod.global", "@lsp.mod.globalScope" }, st.globals)
+
+  -- `rainbow_variables`: one group per color (see winteriscoming.semantic)
+  for i, color in ipairs(c.variables or {}) do
+    ret["WinteriscomingVariable" .. i] = { fg = color }
+  end
+  return ret
 end
 
 return M

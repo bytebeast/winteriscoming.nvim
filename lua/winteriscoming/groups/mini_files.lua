@@ -16,7 +16,7 @@ function M.get(c, opts)
     MiniFilesFile           = { fg = c.fg_float },
     MiniFilesNormal         = "NormalFloat",
     MiniFilesTitle          = { fg = c.fg_muted, bg = c.bg_float },
-    MiniFilesTitleFocused   = { fg = c.blue, bg = c.bg_float, bold = true },
+    MiniFilesTitleFocused   = { fg = c.accent, bg = c.bg_float, bold = true },
   }
   return ret
 end

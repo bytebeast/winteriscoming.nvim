@@ -1,0 +1,36 @@
+# name: 'Winter is Coming Dark Black'
+# url: 'https://github.com/johnpapa/vscode-winteriscoming'
+# preferred_background: 282822
+# Copy to ~/.config/fish/themes/, then: fish_config theme choose winteriscoming_black
+
+fish_color_normal bce7ff
+fish_color_command 8fa2f8
+fish_color_builtin f7ecb5
+fish_color_function 8fa2f8
+fish_color_keyword 00bff9
+fish_color_param d7dbe0
+fish_color_option f7ecb5
+fish_color_quote bcf0c0
+fish_color_escape ec9cd2
+fish_color_redirection 00bff9
+fish_color_operator 00bff9
+fish_color_end c792ea
+fish_color_comment 8a9db3 --italics
+fish_color_error ef5350
+fish_color_valid_path --underline
+fish_color_autosuggestion 4d8aa0
+fish_color_selection --background=2a4258
+fish_color_search_match --background=534072
+fish_color_history_current 7fdbca --bold
+fish_color_cancel ef5350
+fish_color_cwd 6dbdfa
+fish_color_cwd_root ef5350
+fish_color_user 8dec95
+fish_color_host 219fd5
+fish_color_host_remote f7ecb5
+fish_color_status ef5350
+fish_pager_color_progress 5f7e97
+fish_pager_color_prefix 00bff9 --bold
+fish_pager_color_completion bce7ff
+fish_pager_color_description 5f7e97
+fish_pager_color_selected_background --background=33332c

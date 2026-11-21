@@ -1,0 +1,139 @@
+// Winter is Coming Dark Black for zellij
+// upstream: https://github.com/johnpapa/vscode-winteriscoming
+// Copy to ~/.config/zellij/themes/, then set `theme "winteriscoming_black"`
+themes {
+    winteriscoming_black {
+        text_unselected {
+            base 214 222 235
+            background 31 31 26
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        text_selected {
+            base 238 239 255
+            background 51 51 44
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        ribbon_unselected {
+            base 126 161 194
+            background 48 51 49
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        ribbon_selected {
+            base 23 23 19
+            background 33 159 213
+            emphasis_0 45 44 35
+            emphasis_1 20 48 53
+            emphasis_2 35 44 32
+            emphasis_3 55 43 48
+        }
+        ribbon_hover {
+            base 214 222 235
+            background 51 51 44
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        table_title {
+            base 33 159 213
+            background 31 31 26
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        table_cell_unselected {
+            base 214 222 235
+            background 31 31 26
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        table_cell_selected {
+            base 238 239 255
+            background 51 51 44
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        list_unselected {
+            base 214 222 235
+            background 31 31 26
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        list_selected {
+            base 238 239 255
+            background 51 51 44
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        frame_unselected {
+            base 58 58 50
+            background 40 40 34
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        frame_selected {
+            base 33 159 213
+            background 40 40 34
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        frame_highlight {
+            base 247 236 181
+            background 40 40 34
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        exit_code_success {
+            base 141 236 149
+            background 40 40 34
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        exit_code_error {
+            base 239 83 80
+            background 40 40 34
+            emphasis_0 247 236 181
+            emphasis_1 0 191 249
+            emphasis_2 141 236 149
+            emphasis_3 236 156 210
+        }
+        multiplayer_user_colors {
+            player_1 236 156 210
+            player_2 33 159 213
+            player_3 247 140 108
+            player_4 247 236 181
+            player_5 109 189 250
+            player_6 141 236 149
+            player_7 239 83 80
+            player_8 210 159 252
+            player_9 127 219 202
+            player_10 199 146 234
+        }
+    }
+}

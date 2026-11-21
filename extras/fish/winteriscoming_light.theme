@@ -1,0 +1,36 @@
+# name: 'Winter is Coming Light'
+# url: 'https://github.com/johnpapa/vscode-winteriscoming'
+# preferred_background: ffffff
+# Copy to ~/.config/fish/themes/, then: fish_config theme choose winteriscoming_light
+
+fish_color_normal 002339
+fish_color_command b1108e
+fish_color_builtin 08134a
+fish_color_function b1108e
+fish_color_keyword 0784a6
+fish_color_param 6b6b6b
+fish_color_option a85f08
+fish_color_quote a44185
+fish_color_escape b8418f
+fish_color_redirection 7b30d0
+fish_color_operator 7b30d0
+fish_color_end da5221
+fish_color_comment 357b42 --italics
+fish_color_error de3d3b
+fish_color_valid_path --underline
+fish_color_autosuggestion 7a9eb8
+fish_color_selection --background=cee1f0
+fish_color_search_match --background=d8cded
+fish_color_history_current 2f7d70 --bold
+fish_color_cancel de3d3b
+fish_color_cwd 207bb8
+fish_color_cwd_root de3d3b
+fish_color_user 07805e
+fish_color_host 2f86d2
+fish_color_host_remote b05f0a
+fish_color_status de3d3b
+fish_pager_color_progress 5f7e97
+fish_pager_color_prefix 0784a6 --bold
+fish_pager_color_completion 002339
+fish_pager_color_description 5f7e97
+fish_pager_color_selected_background --background=e3e3e3

@@ -1,0 +1,32 @@
+/* Winter is Coming Dark Blue for st: replace colorname[] and the default* lines in config.h */
+/* upstream: https://github.com/johnpapa/vscode-winteriscoming */
+static const char *colorname[] = {
+	"#011627",
+	"#ef5350",
+	"#22da6e",
+	"#f7ecb5",
+	"#219fd5",
+	"#c792ea",
+	"#80cbc4",
+	"#d6deeb",
+	"#5f7e97",
+	"#ef9a9a",
+	"#addb67",
+	"#ffcb6b",
+	"#82aaff",
+	"#c792ea",
+	"#7fdbca",
+	"#ffffff",
+
+	[255] = 0,
+
+	"#219fd5", /* 256: cursor */
+	"#011627", /* 257: reverse cursor */
+	"#d6deeb", /* 258: foreground */
+	"#011627", /* 259: background */
+};
+
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
+unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;

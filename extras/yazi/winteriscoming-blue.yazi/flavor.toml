@@ -1,0 +1,105 @@
+# Winter is Coming Dark Blue: https://github.com/johnpapa/vscode-winteriscoming
+
+[mgr]
+cwd = { fg = "#6dbdfa" }
+find_keyword = { fg = "#f7ecb5", bold = true, italic = true, underline = true }
+find_position = { fg = "#00bff9", bg = "reset", bold = true, italic = true }
+symlink_target = { fg = "#7fdbca", italic = true }
+marker_copied = { fg = "#addb67", bg = "#addb67" }
+marker_cut = { fg = "#ef5350", bg = "#ef5350" }
+marker_marked = { fg = "#7fdbca", bg = "#7fdbca" }
+marker_selected = { fg = "#f7ecb5", bg = "#f7ecb5" }
+count_copied = { fg = "#000a11", bg = "#addb67", bold = true }
+count_cut = { fg = "#000a11", bg = "#ef5350", bold = true }
+count_selected = { fg = "#000a11", bg = "#f7ecb5", bold = true }
+border_style = { fg = "#122d42" }
+
+[tabs]
+active = { fg = "#000a11", bg = "#219fd5", bold = true }
+inactive = { fg = "#5f7e97", bg = "#010e1a" }
+
+[mode]
+normal_main = { fg = "#000a11", bg = "#219fd5", bold = true }
+normal_alt = { fg = "#219fd5", bg = "#0b2942" }
+select_main = { fg = "#000a11", bg = "#d29ffc", bold = true }
+select_alt = { fg = "#d29ffc", bg = "#0b2942" }
+unset_main = { fg = "#000a11", bg = "#ef5350", bold = true }
+unset_alt = { fg = "#ef5350", bg = "#0b2942" }
+
+[indicator]
+current = { bg = "#0b3f5b", bold = true }
+
+[status]
+perm_sep = { fg = "#5f7e97" }
+perm_type = { fg = "#6dbdfa" }
+perm_read = { fg = "#ffcb6b" }
+perm_write = { fg = "#ef5350" }
+perm_exec = { fg = "#8dec95" }
+progress_label = { fg = "#bce7ff", bold = true }
+progress_normal = { fg = "#219fd5", bg = "#0b2942" }
+progress_error = { fg = "#ef5350", bg = "#0b2942" }
+
+[which]
+border = { fg = "#197daa" }
+mask = { bg = "#010e1a" }
+cand = { fg = "#00bff9" }
+rest = { fg = "#5f7e97" }
+desc = { fg = "#c792ea" }
+separator_style = { fg = "#5f7e97" }
+
+[confirm]
+border = { fg = "#197daa" }
+title = { fg = "#219fd5", bold = true }
+btn_yes = { fg = "#000a11", bg = "#219fd5", bold = true }
+btn_no = { fg = "#7799bb" }
+
+[spot]
+border = { fg = "#197daa" }
+title = { fg = "#219fd5", bold = true }
+tbl_col = { fg = "#6dbdfa" }
+tbl_cell = { bg = "#0b3f5b" }
+
+[notify]
+title_info = { fg = "#219fd5" }
+title_warn = { fg = "#ffca28" }
+title_error = { fg = "#ef5350" }
+
+[pick]
+border = { fg = "#197daa" }
+active = { fg = "#219fd5", bold = true }
+
+[input]
+border = { fg = "#197daa" }
+title = { fg = "#219fd5" }
+value = { fg = "#bce7ff" }
+hint = { fg = "#5f7e97", italic = true }
+selected = { bg = "#103362" }
+
+[cmp]
+border = { fg = "#197daa" }
+active = { bg = "#0b3f5b", bold = true }
+
+[tasks]
+border = { fg = "#197daa" }
+title = { fg = "#219fd5" }
+hovered = { fg = "#219fd5", bold = true }
+
+[help]
+border = { fg = "#197daa" }
+chord = { fg = "#00bff9" }
+hovered = { bg = "#0b3f5b", bold = true }
+
+[filetype]
+rules = [
+	{ mime = "**/image/*", fg = "#f7ecb5" },
+	{ mime = "**/{audio,video}/*", fg = "#c792ea" },
+	{ mime = "**/application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#ef5350" },
+	{ mime = "**/application/{pdf,doc,rtf}", fg = "#7fdbca" },
+	{ mime = "vfs/{absent,stale}", fg = "#5f7e97" },
+	{ url = "*", is = "orphan", fg = "#ef5350" },
+	{ url = "*", is = "exec", fg = "#8dec95" },
+	{ url = "*", is = "dummy", fg = "#ef5350" },
+	{ url = "*/", is = "dummy", fg = "#ef5350" },
+	{ url = "*", fg = "#bce7ff" },
+	{ url = "*/", fg = "#6dbdfa" },
+]

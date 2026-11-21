@@ -1,0 +1,32 @@
+/* Winter is Coming Light for st: replace colorname[] and the default* lines in config.h */
+/* upstream: https://github.com/johnpapa/vscode-winteriscoming */
+static const char *colorname[] = {
+	"#011627",
+	"#de3d3b",
+	"#08916a",
+	"#c5a332",
+	"#236ebf",
+	"#7c4dff",
+	"#0097a7",
+	"#7e8993",
+	"#403f53",
+	"#f76c6c",
+	"#49d0b0",
+	"#e7c244",
+	"#4e8cdf",
+	"#b15a91",
+	"#00bcd4",
+	"#403f53",
+
+	[255] = 0,
+
+	"#2f86d2", /* 256: cursor */
+	"#ffffff", /* 257: reverse cursor */
+	"#7e8993", /* 258: foreground */
+	"#ffffff", /* 259: background */
+};
+
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
+unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;

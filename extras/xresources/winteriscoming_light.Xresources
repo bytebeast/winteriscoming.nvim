@@ -1,0 +1,22 @@
+! Winter is Coming Light for X terminals: xrdb -merge this file, or #include it in ~/.Xresources
+! upstream: https://github.com/johnpapa/vscode-winteriscoming
+
+*.foreground: #7e8993
+*.background: #ffffff
+*.cursorColor: #2f86d2
+*.color0: #011627
+*.color1: #de3d3b
+*.color2: #08916a
+*.color3: #c5a332
+*.color4: #236ebf
+*.color5: #7c4dff
+*.color6: #0097a7
+*.color7: #7e8993
+*.color8: #403f53
+*.color9: #f76c6c
+*.color10: #49d0b0
+*.color11: #e7c244
+*.color12: #4e8cdf
+*.color13: #b15a91
+*.color14: #00bcd4
+*.color15: #403f53

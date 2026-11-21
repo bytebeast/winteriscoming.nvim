@@ -1,0 +1,141 @@
+/*
+ * Winter is Coming Dark Blue for Zettlr (applies in dark mode)
+ * upstream: https://github.com/johnpapa/vscode-winteriscoming
+ *
+ * Install: Zettlr -> Assets Manager -> Custom CSS, paste this file, save.
+ * To follow Zettlr's dark mode, paste a light and a dark file together, e.g.
+ *   cat winteriscoming_light.css winteriscoming_blue.css
+ * Themes the editor, file manager, sidebar, menu bar, toolbar, tabs and
+ * status bar.
+ */
+
+/* ── Editor colors (Zettlr's documented variables) ─────────────────────── */
+html body.dark .cm-editor {
+  --zettlr-editor-scroller-color: #bce7ff;
+  --zettlr-editor-scroller-bg: #011627;
+  --zettlr-editor-primary-color: #219fd5;
+  --zettlr-editor-secondary-color: #78bd65;
+  --zettlr-editor-selection-color: #103362;
+  --zettlr-editor-highlight-color: #403775;
+  --zettlr-editor-code-color: #f7ecb5;
+  --zettlr-editor-code-bg: #042444;
+  --zettlr-editor-citation-color: #f78c6c;
+  --zettlr-editor-citation-bg: #1f242f;
+  --zettlr-editor-escape-color: #ec9cd2;
+  --zettlr-editor-accent-color: #000a11;
+  --zettlr-editor-accent-bg: #d29ffc;
+  --zettlr-editor-error-color: #ef5350;
+}
+
+/* Zettlr's accent (selected files, toggles, focus) normally follows your OS
+   accent color. Delete these two lines to keep that behavior. */
+html body.dark { --system-accent-color: #219fd5; --system-accent-color-contrast: #000a11; }
+
+html body.dark .main-editor-wrapper { background-color: #011627; }
+html body.dark .cm-editor .cm-gutters { background-color: #011627; color: #14688f; border-right-color: #042444; }
+html body.dark .cm-editor .cm-activeLineGutter { color: #219fd5; }
+html body.dark .cm-editor .code-block-line-background { background-color: #010e1a; }
+html body.dark .cm-editor .inline-code-background { background-color: #042444; }
+html body.dark .cm-editor .cm-quote { color: #82aaff; }
+html body.dark .cm-editor .cm-code-mark { color: #5f7e97; }
+html body.dark .cm-editor .cm-zkn-tag { color: #6dbdfa; background-color: #0e2a40; border-radius: 3px; }
+html body.dark .cm-editor .cm-zkn-link { color: #6dbdfa; }
+
+/* Headings: same colors as the markdown headings in Neovim */
+html body.dark .cm-editor .cm-header-1 { color: #5abeb0; }
+html body.dark .cm-editor .cm-header-2 { color: #82aaff; }
+html body.dark .cm-editor .cm-header-3 { color: #d29ffc; }
+html body.dark .cm-editor .cm-header-4 { color: #f7ecb5; }
+html body.dark .cm-editor .cm-header-5 { color: #8dec95; }
+html body.dark .cm-editor .cm-header-6 { color: #ec9cd2; }
+
+/* ── Code block syntax highlighting (same roles as in Neovim) ────────────── */
+html body.dark .cm-editor .cm-comment,
+html body.dark .cm-editor .cm-line-comment,
+html body.dark .cm-editor .cm-block-comment { color: #8a9db3; font-style: italic; }
+html body.dark .cm-editor .cm-doc-comment,
+html body.dark .cm-editor .cm-doc-string { color: #a3c7ba; font-style: italic; }
+html body.dark .cm-editor .cm-keyword,
+html body.dark .cm-editor .cm-control-keyword,
+html body.dark .cm-editor .cm-definition-keyword,
+html body.dark .cm-editor .cm-operator-keyword,
+html body.dark .cm-editor .cm-modifier { color: #00bff9; font-style: italic; }
+html body.dark .cm-editor .cm-module-keyword { color: #00bff9; font-style: italic; }
+html body.dark .cm-editor .cm-string { color: #bcf0c0; }
+html body.dark .cm-editor .cm-character { color: #bcf0c0; }
+html body.dark .cm-editor .cm-escape { color: #ec9cd2; }
+html body.dark .cm-editor .cm-regexp { color: #80cbc4; }
+html body.dark .cm-editor .cm-number,
+html body.dark .cm-editor .cm-integer,
+html body.dark .cm-editor .cm-float,
+html body.dark .cm-editor .cm-unit { color: #8dec95; }
+html body.dark .cm-editor .cm-bool,
+html body.dark .cm-editor .cm-null,
+html body.dark .cm-editor .cm-atom { color: #8dec95; }
+html body.dark .cm-editor .cm-literal,
+html body.dark .cm-editor .cm-color { color: #a170c6; }
+html body.dark .cm-editor .cm-type-name,
+html body.dark .cm-editor .cm-class-name { color: #d29ffc; }
+html body.dark .cm-editor .cm-namespace { color: #d3eed6; }
+html body.dark .cm-editor .cm-variable-name { color: #b3c8d9; }
+html body.dark .cm-editor .cm-self { color: #00bff9; }
+html body.dark .cm-editor .cm-property-name { color: #f7ecb5; }
+html body.dark .cm-editor .cm-macro-name { color: #c792ea; }
+html body.dark .cm-editor .cm-annotation,
+html body.dark .cm-editor .cm-meta { color: #f7ecb5; }
+html body.dark .cm-editor .cm-operator,
+html body.dark .cm-editor .cm-arithmetic-operator,
+html body.dark .cm-editor .cm-logic-operator,
+html body.dark .cm-editor .cm-bitwise-operator,
+html body.dark .cm-editor .cm-compare-operator,
+html body.dark .cm-editor .cm-update-operator,
+html body.dark .cm-editor .cm-definition-operator,
+html body.dark .cm-editor .cm-type-operator,
+html body.dark .cm-editor .cm-control-operator,
+html body.dark .cm-editor .cm-deref-operator { color: #00bff9; }
+html body.dark .cm-editor .cm-punctuation,
+html body.dark .cm-editor .cm-separator,
+html body.dark .cm-editor .cm-bracket,
+html body.dark .cm-editor .cm-brace,
+html body.dark .cm-editor .cm-paren,
+html body.dark .cm-editor .cm-square-bracket { color: #d6deeb; }
+html body.dark .cm-editor .cm-tag-name { color: #6dbdfa; }
+html body.dark .cm-editor .cm-angle-bracket { color: #d6deeb; }
+html body.dark .cm-editor .cm-attribute-name { color: #f7ecb5; font-style: italic; }
+html body.dark .cm-editor .cm-attribute-value { color: #bcf0c0; }
+html body.dark .cm-editor .cm-inserted { color: #addb67; }
+html body.dark .cm-editor .cm-deleted { color: #ef5350; }
+html body.dark .cm-editor .cm-changed { color: #219fd5; }
+html body.dark .cm-editor .cm-invalid { color: #ef5350; text-decoration: underline wavy #ef5350; }
+
+/* ── File manager and sidebar ─────────────────────────────────────────── */
+/* Zettlr paints these per platform (body.linux / .darwin / .win32); the id
+   selector outranks all of them. */
+html body.dark #file-manager,
+html body.dark #sidebar { background-color: #010e1a; color: #7799bb; }
+html body.dark #file-manager #file-tree,
+html body.dark #file-manager #file-list,
+html body.dark #file-manager .tree-item.directory:not(.collapsed),
+html body.dark #file-manager div.list-item-wrapper,
+html body.dark #file-manager div.list-item,
+html body.dark #file-manager div.list-item div.filename div.date { background-color: #010e1a; }
+html body.dark #file-manager div.list-item { border-bottom-color: #042444; }
+html body.dark:not(#winteriscoming) #file-manager input.file-manager-filter-input { background-color: #042444; color: #bce7ff; border-color: #0b2942; }
+html body.dark:not(#winteriscoming) #file-manager input.file-manager-filter-input::placeholder { color: #5f7e97; }
+
+/* ── Window chrome ────────────────────────────────────────────────────── */
+/* `:not(#winteriscoming)` matches every element but counts as an id, so these
+   outrank Zettlr's chrome rules (Vue scoped attributes, per-platform classes
+   like body.linux.dark) without assuming any particular page structure. */
+html body.dark:not(#winteriscoming) div#window-content { background-color: #010e1a; }
+html body.dark:not(#winteriscoming) #menubar { background-color: #000a11; color: #7799bb; }
+html body.dark:not(#winteriscoming) div#toolbar { background-color: #010e1a; color: #7799bb; }
+html body.dark:not(#winteriscoming) div#toolbar button { color: #7799bb; border-color: #122d42; }
+html body.dark:not(#winteriscoming) div#toolbar button:hover,
+html body.dark:not(#winteriscoming) div#toolbar button.active { background-color: #0b2942; color: #bce7ff; }
+html body.dark:not(#winteriscoming) div.tab-container { background-color: #000a11; }
+html body.dark:not(#winteriscoming) div.tab-container div[role="tab"] { background-color: #000a11; color: #5f7e97; border-color: #042444; }
+html body.dark:not(#winteriscoming) div.tab-container div[role="tab"]:hover { background-color: #042444; color: #7799bb; }
+html body.dark:not(#winteriscoming) div.tab-container div[role="tab"].active { background-color: #0b2942; color: #d6deeb; border-bottom-color: #219fd5; }
+html body.dark .cm-editor .cm-panels,
+html body.dark .cm-editor .cm-statusbar { background-color: #010e1a; color: #7799bb; }

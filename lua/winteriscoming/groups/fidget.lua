@@ -7,7 +7,7 @@ M.url = "https://github.com/j-hui/fidget.nvim"
 function M.get(c, opts)
   -- stylua: ignore
   local ret = {
-    FidgetTitle = { fg = c.blue },
+    FidgetTitle = { fg = c.accent },
     FidgetTask  = { fg = c.fg_muted },
   }
   return ret

@@ -24,6 +24,11 @@ function M.setup(opts)
     M.terminal(colors)
   end
 
+  -- `rainbow_variables` needs LspTokenUpdate (Neovim 0.9+)
+  if vim.fn.exists("##LspTokenUpdate") == 1 then
+    require("winteriscoming.semantic").setup(colors.variables and #colors.variables or 0)
+  end
+
   return colors, groups, opts
 end
 

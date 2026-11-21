@@ -1,0 +1,125 @@
+# Winter is Coming Light for k9s
+# upstream: https://github.com/johnpapa/vscode-winteriscoming
+# Copy to the k9s skins directory, then set `k9s.ui.skin: winteriscoming_light`
+# in k9s's config.yaml.
+#   Linux:  ~/.config/k9s/skins/
+#   macOS:  ~/Library/Application Support/k9s/skins/
+#   or run `k9s info` to print the skins directory k9s actually uses
+
+k9s:
+  body:
+    fgColor: "#002339"
+    bgColor: "#ffffff"
+    logoColor: "#7b30d0"
+    logoColorMsg: "#002339"
+    logoColorInfo: "#2f86d2"
+    logoColorWarn: "#a8861c"
+    logoColorError: "#de3d3b"
+  prompt:
+    fgColor: "#002339"
+    bgColor: "#f3f3f3"
+    suggestColor: "#357b42"
+    border:
+      command: "#2f86d2"
+      default: "#2f7d70"
+  help:
+    fgColor: "#002339"
+    bgColor: "#ffffff"
+    sectionColor: "#07805e"
+    keyColor: "#2f86d2"
+    numKeyColor: "#da5221"
+  frame:
+    title:
+      fgColor: "#2f86d2"
+      bgColor: "#ffffff"
+      highlightColor: "#c42fa4"
+      counterColor: "#a8861c"
+      filterColor: "#07805e"
+    border:
+      fgColor: "#d4d4d4"
+      focusColor: "#2f86d2"
+    menu:
+      fgColor: "#37567c"
+      keyColor: "#2f86d2"
+      numKeyColor: "#da5221"
+    crumbs:
+      fgColor: "#ffffff"
+      bgColor: "#7c2cbd"
+      activeColor: "#2f86d2"
+    status:
+      newColor: "#2f86d2"
+      modifyColor: "#7c2cbd"
+      addColor: "#07805e"
+      pendingColor: "#da5221"
+      errorColor: "#de3d3b"
+      highlightColor: "#0097a7"
+      killColor: "#7b30d0"
+      completedColor: "#357b42"
+  info:
+    fgColor: "#da5221"
+    sectionColor: "#002339"
+    cpuColor: "#7b30d0"
+    memColor: "#a8861c"
+    k9sRevColor: "#07805e"
+  views:
+    table:
+      fgColor: "#002339"
+      bgColor: "#ffffff"
+      cursorFgColor: "#ffffff"
+      cursorBgColor: "#002339"
+      markColor: "#c42fa4"
+      header:
+        fgColor: "#a8861c"
+        bgColor: "#ffffff"
+        sorterColor: "#0097a7"
+        selectedSortColumnColor: "#da5221"
+    xray:
+      fgColor: "#002339"
+      bgColor: "#ffffff"
+      cursorColor: "#2f86d2"
+      cursorTextColor: "#ffffff"
+      graphicColor: "#7b30d0"
+    charts:
+      bgColor: "#ffffff"
+      chartBgColor: "#ffffff"
+      dialBgColor: "#ffffff"
+      focusFgColor: "#002339"
+      focusBgColor: "#e3e3e3"
+      defaultDialColors:
+        - "#07805e"
+        - "#de3d3b"
+      defaultChartColors:
+        - "#07805e"
+        - "#de3d3b"
+      resourceColors:
+        cpu:
+          - "#7b30d0"
+          - "#2f86d2"
+        mem:
+          - "#a8861c"
+          - "#da5221"
+    yaml:
+      keyColor: "#2f7d70"
+      valueColor: "#002339"
+      colonColor: "#37567c"
+    picker:
+      mainColor: "#002339"
+      focusColor: "#2f86d2"
+      shortcutColor: "#da5221"
+    logs:
+      fgColor: "#002339"
+      bgColor: "#ffffff"
+      indicator:
+        fgColor: "#7c2cbd"
+        bgColor: "#ffffff"
+        toggleOnColor: "#07805e"
+        toggleOffColor: "#357b42"
+  dialog:
+    fgColor: "#002339"
+    bgColor: "#f3f3f3"
+    buttonFgColor: "#002339"
+    buttonBgColor: "#e3e3e3"
+    buttonFocusFgColor: "#ffffff"
+    buttonFocusBgColor: "#2f86d2"
+    labelFgColor: "#da5221"
+    fieldFgColor: "#002339"

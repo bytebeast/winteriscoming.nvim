@@ -9,7 +9,7 @@ function M.get(c, opts)
   local ret = {
     NoiceCmdlineIcon               = { fg = c.ice },
     NoiceCmdlinePopupBorder        = { fg = c.border_highlight },
-    NoiceCmdlinePopupTitle         = { fg = c.blue },
+    NoiceCmdlinePopupTitle         = { fg = c.accent },
     NoiceCmdlineIconInput          = { fg = c.prompt },
     NoiceCmdlinePopupBorderInput   = { fg = c.prompt },
     NoiceCmdlinePopupTitleInput    = { fg = c.prompt },

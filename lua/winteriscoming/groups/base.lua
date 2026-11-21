@@ -8,6 +8,15 @@ function M.get(c, opts)
   local s = c.syntax
   local bg = opts.transparent and c.none or c.bg
 
+  local function vt(color)
+    local tint = opts.diagnostics.virtual_text == "tinted" and Util.blend_bg(color, 0.1) or nil
+    return { fg = color, bg = tint, style = opts.styles.virtual_text }
+  end
+  local line = opts.diagnostics.underline -- "undercurl", "underline" or false
+  local function under(color)
+    return line and { [line] = true, sp = color } or {}
+  end
+
   -- stylua: ignore
   return {
     -- Editor UI ---------------------------------------------------------------
@@ -16,7 +25,7 @@ function M.get(c, opts)
     NormalSB                    = { fg = c.fg_sidebar, bg = c.bg_sidebar },
     NormalFloat                 = { fg = c.fg_float, bg = c.bg_float },
     FloatBorder                 = { fg = c.border_highlight, bg = c.bg_float },
-    FloatTitle                  = { fg = c.blue, bg = c.bg_float, bold = true },
+    FloatTitle                  = { fg = c.accent, bg = c.bg_float, bold = true },
     FloatFooter                 = { fg = c.fg_muted, bg = c.bg_float },
     FloatShadow                 = { bg = c.black, blend = 80 },
     FloatShadowThrough          = { bg = c.black, blend = 100 },
@@ -67,7 +76,7 @@ function M.get(c, opts)
     ErrorMsg                    = { fg = c.error },
     WarningMsg                  = { fg = c.warning },
     OkMsg                       = { fg = c.ok },
-    Title                       = { fg = c.blue, bold = true },
+    Title                       = { fg = c.accent, bold = true },
 
     Pmenu                       = { fg = c.fg_light, bg = c.bg_popup },
     PmenuSel                    = { bg = Util.blend_bg(c.blue, c.is_light and 0.2 or 0.3), bold = true },
@@ -87,7 +96,8 @@ function M.get(c, opts)
     -- VS Code's status bar is solid winter blue; in Neovim that's lualine's
     -- job, so the built-in statusline stays quiet and readable.
     StatusLine                  = { fg = c.fg_sidebar, bg = c.bg_statusline },
-    StatusLineNC                = { fg = c.fg_muted, bg = c.bg_statusline },
+    StatusLineNC                = opts.hide_inactive_statusline and { fg = c.bg, bg = bg, underline = true, sp = c.border }
+                                    or { fg = c.fg_muted, bg = c.bg_statusline },
     StatusLineTerm              = "StatusLine",
     StatusLineTermNC            = "StatusLineNC",
     TabLine                     = { fg = c.fg_muted, bg = c.bg_dark }, -- tab.inactive
@@ -173,7 +183,7 @@ function M.get(c, opts)
     LspSignatureActiveParameter = { bg = Util.blend_bg(c.blue, 0.25), bold = true },
     LspCodeLens                 = { fg = c.fg_muted },
     LspCodeLensSeparator        = { fg = c.dark3 },
-    LspInlayHint                = { fg = c.dark5, bg = c.bg_inlay }, -- editorInlayHint
+    LspInlayHint                = { fg = c.dark5, bg = opts.inlay_hints == "tinted" and c.bg_inlay or nil, style = opts.styles.inlay_hints }, -- editorInlayHint
     LspInfoBorder               = { fg = c.border_highlight, bg = c.bg_float },
 
     -- Diagnostics -------------------------------------------------------------
@@ -184,16 +194,16 @@ function M.get(c, opts)
     DiagnosticOk                = { fg = c.ok },
     DiagnosticUnnecessary       = { fg = c.fg_muted },
     DiagnosticDeprecated        = { strikethrough = true, sp = c.fg_muted },
-    DiagnosticVirtualTextError  = { fg = c.error, bg = Util.blend_bg(c.error, 0.1) },
-    DiagnosticVirtualTextWarn   = { fg = c.warning, bg = Util.blend_bg(c.warning, 0.1) },
-    DiagnosticVirtualTextInfo   = { fg = c.info, bg = Util.blend_bg(c.info, 0.1) },
-    DiagnosticVirtualTextHint   = { fg = c.hint, bg = Util.blend_bg(c.hint, 0.1) },
-    DiagnosticVirtualTextOk     = { fg = c.ok, bg = Util.blend_bg(c.ok, 0.1) },
-    DiagnosticUnderlineError    = { undercurl = true, sp = c.error },
-    DiagnosticUnderlineWarn     = { undercurl = true, sp = c.warning },
-    DiagnosticUnderlineInfo     = { undercurl = true, sp = c.info },
-    DiagnosticUnderlineHint     = { undercurl = true, sp = c.hint },
-    DiagnosticUnderlineOk       = { undercurl = true, sp = c.ok },
+    DiagnosticVirtualTextError  = vt(c.error),
+    DiagnosticVirtualTextWarn   = vt(c.warning),
+    DiagnosticVirtualTextInfo   = vt(c.info),
+    DiagnosticVirtualTextHint   = vt(c.hint),
+    DiagnosticVirtualTextOk     = vt(c.ok),
+    DiagnosticUnderlineError    = under(c.error),
+    DiagnosticUnderlineWarn     = under(c.warning),
+    DiagnosticUnderlineInfo     = under(c.info),
+    DiagnosticUnderlineHint     = under(c.hint),
+    DiagnosticUnderlineOk       = under(c.ok),
 
     -- Misc built-in filetypes -------------------------------------------------
     healthError                 = { fg = c.error },

@@ -1,0 +1,132 @@
+# Winter is Coming Dark Black for Helix: copy to ~/.config/helix/themes/, then set theme = "winteriscoming_black"
+# upstream: https://github.com/johnpapa/vscode-winteriscoming
+
+"attribute" = "#f7ecb5"
+"type" = "#d29ffc"
+"type.builtin" = "#7fdbca"
+"type.parameter" = "#d29ffc"
+"type.enum.variant" = "#ad80d4"
+"constructor" = "#d29ffc"
+"constant" = "#ad80d4"
+"constant.builtin" = "#92b6f4"
+"constant.builtin.boolean" = "#8dec95"
+"constant.character" = "#bcf0c0"
+"constant.character.escape" = "#ec9cd2"
+"constant.numeric" = "#8dec95"
+"string" = "#bcf0c0"
+"string.regexp" = "#80cbc4"
+"string.special" = "#ec9cd2"
+"string.special.path" = "#6dbdfa"
+"string.special.url" = { fg = "#6dbdfa", modifiers = ["underlined"] }
+"string.special.symbol" = "#ad80d4"
+"comment" = { fg = "#8a9db3", modifiers = ["italic"] }
+"comment.unused" = "#5f7e97"
+"variable" = "#b3c8d9"
+"variable.builtin" = { fg = "#00bff9", modifiers = ["italic"] }
+"variable.parameter" = "#d7dbe0"
+"variable.other.member" = "#f7ecb5"
+"label" = "#4fb4d8"
+"punctuation" = "#d6deeb"
+"punctuation.special" = "#c63ed3"
+"keyword" = { fg = "#00bff9", modifiers = ["italic"] }
+"keyword.control.conditional" = { fg = "#00bff9", modifiers = ["italic"] }
+"keyword.control.repeat" = { fg = "#00bff9", modifiers = ["italic"] }
+"keyword.control.return" = { fg = "#00bff9", modifiers = ["italic"] }
+"keyword.control.import" = { fg = "#00bff9", modifiers = ["italic"] }
+"keyword.control.exception" = { fg = "#00bff9", modifiers = ["italic"] }
+"keyword.storage" = { fg = "#c792ea", modifiers = ["italic"] }
+"keyword.directive" = "#c792ea"
+"operator" = "#00bff9"
+"function" = "#8fa2f8"
+"function.method" = "#8fa2f8"
+"function.builtin" = "#f7ecb5"
+"function.macro" = "#c792ea"
+"function.special" = "#c792ea"
+"tag" = "#6dbdfa"
+"namespace" = "#d3eed6"
+"special" = "#7fdbca"
+"embedded" = "#bce7ff"
+"markup.heading.marker" = "#5f7e97"
+"markup.list" = "#6dbdfa"
+"markup.list.checked" = "#8dec95"
+"markup.list.unchecked" = "#5f7e97"
+"markup.bold" = { fg = "#57cdff", modifiers = ["bold"] }
+"markup.italic" = { fg = "#c792ea", modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "#6dbdfa", modifiers = ["underlined"] }
+"markup.link.label" = "#78bd65"
+"markup.link.text" = "#78bd65"
+"markup.quote" = { fg = "#82aaff", modifiers = ["italic"] }
+"markup.raw" = "#f7ecb5"
+"markup.raw.block" = "#f7ecb5"
+"diff.plus" = "#addb67"
+"diff.minus" = "#ef5350"
+"diff.delta" = "#219fd5"
+"diff.delta.conflict" = "#f78c6c"
+"ui.background" = { bg = "#282822" }
+"ui.background.separator" = "#3a3a32"
+"ui.cursor" = { fg = "#282822", bg = "#5f7e97" }
+"ui.cursor.primary" = { fg = "#282822", bg = "#219fd5" }
+"ui.cursor.primary.insert" = { fg = "#282822", bg = "#8dec95" }
+"ui.cursor.primary.select" = { fg = "#282822", bg = "#d29ffc" }
+"ui.cursor.match" = { fg = "#f7ecb5", bg = "#264c58", modifiers = ["bold"] }
+"ui.debug.breakpoint" = "#ef5350"
+"ui.debug.active" = "#f7ecb5"
+"ui.linenr" = "#246f8d"
+"ui.linenr.selected" = { fg = "#219fd5", modifiers = ["bold"] }
+"ui.statusline" = { fg = "#7799bb", bg = "#1f1f1a" }
+"ui.statusline.inactive" = { fg = "#5f7e97", bg = "#1f1f1a" }
+"ui.statusline.normal" = { fg = "#171713", bg = "#219fd5", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "#171713", bg = "#8dec95", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "#171713", bg = "#d29ffc", modifiers = ["bold"] }
+"ui.statusline.separator" = "#3a3a32"
+"ui.bufferline" = { fg = "#5f7e97", bg = "#1f1f1a" }
+"ui.bufferline.active" = { fg = "#d6deeb", bg = "#33332c", modifiers = ["bold"] }
+"ui.bufferline.background" = { bg = "#171713" }
+"ui.popup" = { fg = "#bce7ff", bg = "#1f1f1a" }
+"ui.popup.info" = { fg = "#bce7ff", bg = "#1f1f1a" }
+"ui.picker.header.column.active" = { fg = "#219fd5", modifiers = ["bold"] }
+"ui.window" = "#3a3a32"
+"ui.help" = { fg = "#bce7ff", bg = "#1f1f1a" }
+"ui.text" = "#bce7ff"
+"ui.text.focus" = { fg = "#eeefff", bg = "#264c58", modifiers = ["bold"] }
+"ui.text.inactive" = "#5f7e97"
+"ui.text.info" = "#7799bb"
+"ui.text.directory" = "#6dbdfa"
+"ui.text.symlink" = "#7fdbca"
+"ui.virtual.ruler" = { bg = "#1f1f1a" }
+"ui.virtual.whitespace" = "#3b3a32"
+"ui.virtual.indent-guide" = "#3b3a32"
+"ui.virtual.inlay-hint" = { fg = "#4d8aa0", bg = "#2e2e2a" }
+"ui.virtual.wrap" = "#4f4e44"
+"ui.virtual.jump-label" = { fg = "#171713", bg = "#00bff9", modifiers = ["bold"] }
+"ui.menu" = { fg = "#d6deeb", bg = "#1f1f1a" }
+"ui.menu.selected" = { bg = "#264c58", modifiers = ["bold"] }
+"ui.menu.scroll" = { fg = "#255e73", bg = "#33332c" }
+"ui.selection" = { bg = "#2a4258" }
+"ui.highlight" = { bg = "#2a4258" }
+"ui.highlight.frameline" = { bg = "#454337" }
+"ui.cursorline.primary" = { bg = "#303331" }
+"ui.cursorcolumn.primary" = { bg = "#303331" }
+"error" = "#ef5350"
+"warning" = "#ffca28"
+"info" = "#219fd5"
+"hint" = "#7fdbca"
+"error.diagnostic.inline" = { fg = "#ef5350", bg = "#3c2c27" }
+"warning.diagnostic.inline" = { fg = "#ffca28", bg = "#3e3823" }
+"info.diagnostic.inline" = { fg = "#219fd5", bg = "#273434" }
+"hint.diagnostic.inline" = { fg = "#7fdbca", bg = "#313a33" }
+"diagnostic.error" = { underline = { color = "#ef5350", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "#ffca28", style = "curl" } }
+"diagnostic.info" = { underline = { color = "#219fd5", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "#7fdbca", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+"tabstop" = { bg = "#423a43" }
+"markup.heading.1" = { fg = "#5abeb0", modifiers = ["bold"] }
+"markup.heading.2" = { fg = "#82aaff", modifiers = ["bold"] }
+"markup.heading.3" = { fg = "#d29ffc", modifiers = ["bold"] }
+"markup.heading.4" = { fg = "#f7ecb5", modifiers = ["bold"] }
+"markup.heading.5" = { fg = "#8dec95", modifiers = ["bold"] }
+"markup.heading.6" = { fg = "#ec9cd2", modifiers = ["bold"] }
+rainbow = ["#ef9a9a", "#f7ecb5", "#00bff9", "#f78c6c", "#8dec95", "#d29ffc", "#7fdbca"]

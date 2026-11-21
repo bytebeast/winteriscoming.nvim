@@ -16,7 +16,7 @@ function M.get(c, opts)
     MiniTablineModifiedVisible = { fg = c.cream, bg = c.bg_dark },
     MiniTablineModifiedHidden  = { fg = Util.blend_bg(c.cream, 0.7), bg = c.bg_dark },
     MiniTablineFill            = { bg = opts.transparent and c.none or c.bg_darker },
-    MiniTablineTabpagesection  = { fg = c.on_accent, bg = c.blue, bold = true },
+    MiniTablineTabpagesection  = { fg = c.on_accent, bg = c.accent, bold = true },
   }
   return ret
 end
