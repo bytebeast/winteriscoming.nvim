@@ -49,7 +49,8 @@ hi DiagnosticWarn guifg=#9a6a00 gui=NONE cterm=NONE
 hi DiffAdd guibg=#cee4d4 gui=NONE cterm=NONE
 hi DiffChange guibg=#e6f0fa gui=NONE cterm=NONE
 hi DiffDelete guifg=#f2b5b5 guibg=#f9dcdc gui=NONE cterm=NONE
-hi DiffText guibg=#bcd8f1 gui=NONE cterm=NONE
+hi DiffText guibg=#bcd8f1 guisp=#2f86d2 gui=underline cterm=NONE
+hi DiffTextAdd guibg=#b8d8c0 guisp=#22863a gui=underline cterm=NONE
 hi Directory guifg=#207bb8 gui=NONE cterm=NONE
 hi EndOfBuffer guifg=#ffffff gui=NONE cterm=NONE
 hi Error guifg=#de3d3b gui=NONE cterm=NONE

@@ -168,6 +168,21 @@ plugins ~
   name: >lua
     plugins = { telescope = true, ["neo-tree"] = false }
 <
+                                                     *winteriscoming-diff*
+Diffs ~
+  Changed text inside a changed line (`DiffText`) is underlined in winter
+  blue as well as tinted, so a one-character edit stands out. Added text
+  inside a changed line (`DiffTextAdd`) is underlined in green. That needs
+  Neovim 0.12+ with "inline:char" in 'diffopt' (the 0.12 default): >lua
+    vim.opt.diffopt:append("inline:char")
+<
+  Inside tmux, colored underlines need `set -as terminal-features ",*:usstyle"`
+  in ~/.tmux.conf (tmux 3.2+). To drop the underlines: >lua
+    on_highlights = function(hl, c)
+      hl.DiffText = { bg = c.diff.text }
+      hl.DiffTextAdd = { bg = c.diff.text_add }
+    end,
+<
 ==============================================================================
 5. OVERRIDING COLORS                                *winteriscoming-overrides*
 

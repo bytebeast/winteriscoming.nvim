@@ -268,7 +268,13 @@ function M.setup(opts)
     delete = Util.blend_bg(hue.delete, 0.18 * boost),
     change = Util.blend_bg(hue.change, (light and 0.12 or 0.14) * boost),
     text = Util.blend_bg(hue.change, (light and 0.32 or 0.38) * boost),
+    -- added text inside a changed line (inline diff); green is lighter than
+    -- blue, so a weaker blend keeps code as readable as on DiffText
+    text_add = Util.blend_bg(hue.add, (light and 0.32 or 0.24) * boost),
   }
+  -- DiffText is only a shade stronger than DiffChange, too little to spot a
+  -- one-character edit, so it is underlined as well
+  c.diff_text_underline = hue.change
   c.git.ignore = c.fg_muted
   c.git.conflict = c.git.conflict or c.ember
 

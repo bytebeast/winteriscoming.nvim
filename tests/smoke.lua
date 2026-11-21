@@ -30,6 +30,11 @@ for _, style in ipairs({ "blue", "black", "light" }) do
       check(hl.style == nil, style .. ": unresolved style in " .. name)
     end
   end
+
+  for _, g in ipairs({ "DiffText", "DiffTextAdd" }) do
+    local hl = vim.api.nvim_get_hl(0, { name = g, link = false })
+    check(hl.underline and hl.sp and hl.bg, style .. ": " .. g .. " should be tinted and underlined")
+  end
 end
 
 -- defaults: comments and keywords italic, other code not

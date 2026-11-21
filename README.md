@@ -10,6 +10,9 @@
 
 A Neovim and LazyVim port of John Papa's
 [Winter is Coming](https://github.com/johnpapa/vscode-winteriscoming) VS Code
+theme.
+
+### [Try every style live on the website](https://bytebeast.github.io/winteriscoming.nvim/)
 
 ![preview](images/winter-is-coming-social-preview.png)
 
@@ -41,6 +44,12 @@ else).
 | **Diagnostics and hover** · light                                                    | **Dashboard** · blue                                                    |
 
 ## Install with LazyVim
+
+> **Font:** the screenshots use **JetBrains Mono Nerd Font**
+> (`brew install --cask font-jetbrains-mono-nerd-font`). See the
+> **[font guide](extras/fonts/README.md)** for other good coding fonts, how to
+> set them up in Ghostty, iTerm2, Kitty, WezTerm, Alacritty, Windows Terminal,
+> VS Code and Neovide, and how to turn ligatures on or off.
 
 Create `~/.config/nvim/lua/plugins/winteriscoming.lua`:
 
@@ -86,8 +95,9 @@ vim.cmd.colorscheme("winteriscoming")
 
 ### Customizing in LazyVim
 
-Everything goes in `opts`. This example picks a style, changes a few options,
-recolors through the palette, and overrides individual highlight groups:
+Everything goes in `opts`. This spec spells out the stock values of the options
+people change most, so copying it as is changes nothing. Edit from there. The
+full list of options and defaults is under [Configuration](#configuration).
 
 ```lua
 return {
@@ -96,35 +106,58 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      style = "black", -- "blue", "black" or "light"
-      transparent = true, -- let the terminal background show through
+      style = "blue", -- "blue", "black" or "light"
+      transparent = false, -- true lets the terminal background show through
       styles = {
-        functions = { italic = true }, -- add italics on top of comments + keywords
-        sidebars = "transparent", -- neo-tree, trouble, help, ...
-        floats = "transparent",
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = {},
+        sidebars = "dark", -- neo-tree, trouble, help, ...: "dark", "transparent" or "normal"
+        floats = "dark", -- "dark", "transparent" or "normal"
       },
-      bright_line_numbers = true, -- every line number in winter blue, like VS Code
-
-      -- palette and role overrides, applied before highlights are built
-      on_colors = function(c)
-        c.ice = "#38c6ff" -- keywords, operators, jump labels, picker matches
-        c.syntax.string = "#c3f5c6" -- just strings
-        c.syntax.func = "frost" -- point a role at another palette color
-      end,
-
-      -- individual highlight groups, applied last
-      on_highlights = function(hl, c)
-        hl.CursorLineNr = { fg = c.cream, bold = true }
-        hl.WinSeparator = { fg = c.blue }
-        hl["@variable.parameter"] = { fg = c.cream, italic = true }
-        hl.SnacksPickerMatch = { fg = c.green, bold = true }
-      end,
+      bright_line_numbers = false, -- true = every line number in winter blue, like VS Code
     },
   },
   {
     "LazyVim/LazyVim",
     opts = { colorscheme = "winteriscoming" }, -- follows `style` above
   },
+}
+```
+
+### Example with overrides
+
+> [!WARNING]
+> Everything in this example is an override. It changes the stock look: no
+> editor background, different keyword, string and function colors, italic
+> functions and parameters, cream cursor line number. Copy only the lines you
+> want.
+
+```lua
+opts = {
+  style = "black", -- override: Dark Black instead of Dark Blue
+  transparent = true, -- override: let the terminal background show through
+  styles = {
+    functions = { italic = true }, -- override: italics on top of comments + keywords
+    sidebars = "transparent", -- override: neo-tree, trouble, help, ...
+    floats = "transparent", -- override
+  },
+  bright_line_numbers = true, -- override: every line number in winter blue
+
+  -- override palette colors and roles, applied before highlights are built
+  on_colors = function(c)
+    c.ice = "#38c6ff" -- keywords, operators, jump labels, picker matches
+    c.syntax.string = "#c3f5c6" -- just strings
+    c.syntax.func = "frost" -- point a role at another palette color
+  end,
+
+  -- override individual highlight groups, applied last
+  on_highlights = function(hl, c)
+    hl.CursorLineNr = { fg = c.cream, bold = true }
+    hl.WinSeparator = { fg = c.blue }
+    hl["@variable.parameter"] = { fg = c.cream, italic = true }
+    hl.SnacksPickerMatch = { fg = c.green, bold = true }
+  end,
 }
 ```
 
@@ -241,6 +274,35 @@ opts = {
 }
 ```
 
+### Diffs
+
+Changed text inside a changed line (`DiffText`) is underlined in winter blue as
+well as tinted, so a one-character edit doesn't disappear into the line's
+tint. Added text inside a changed line (`DiffTextAdd`) is tinted and
+underlined in green. `DiffTextAdd` needs Neovim 0.12+ with `inline:char` in
+`'diffopt'`. That's the 0.12 default, but if your config sets `diffopt`, add it
+back:
+
+```lua
+vim.opt.diffopt:append("inline:char")
+```
+
+To drop the underlines, override the two groups:
+
+```lua
+on_highlights = function(hl, c)
+  hl.DiffText = { bg = c.diff.text }
+  hl.DiffTextAdd = { bg = c.diff.text_add }
+end,
+```
+
+Inside tmux, colored underlines need this in `~/.tmux.conf` (tmux 3.2+, then
+detach and reattach), or they come out in the text color:
+
+```tmux
+set -as terminal-features ",*:usstyle"
+```
+
 ### Adjusted colors and `faithful`
 
 A few colors are tuned for a terminal, where the original relied on italics to
@@ -332,20 +394,42 @@ you have installed are loaded. Without either, all of them are.
 
 ## Extras
 
-Matching themes for other tools are in [`extras/`](extras), one file per style:
-alacritty, bat, btop, delta, eza, fish, foot, fzf, ghostty, Helix, iTerm2, k9s
-(plus `_transparent` skins), kitty, lazygit, st, Termux, tmux, Vim, wezterm,
-Windows Terminal, Xresources, Yazi, zathura, Zed, Zellij and Zettlr. Most files
-start with install instructions; delta uses the bat theme for its syntax colors.
-The rest:
+Matching themes for other tools are in [`extras/`](extras), one file per style
+(`winteriscoming_blue`, `winteriscoming_black`, `winteriscoming_light`). Each
+tool's folder has a README with full setup steps:
 
-| Tool             | Install                                                                                           |
-| ---------------- | ------------------------------------------------------------------------------------------------- |
-| Zed              | copy to `~/.config/zed/themes/` and pick the theme in Zed                                         |
-| Windows Terminal | paste the object into `schemes` in `settings.json`                                                |
-| Vim              | add `extras/vim` to `runtimepath`, then `:colorscheme winteriscoming-blue` (needs `termguicolors`) |
-| Yazi             | copy a `winteriscoming-<style>.yazi` folder to `~/.config/yazi/flavors/`, then set it in `theme.toml` |
-| iTerm2           | Settings, Profiles, Colors, Color Presets, Import                                                 |
+| Tool                            | Setup                                                          |
+| ------------------------------- | -------------------------------------------------------------- |
+| Alacritty                       | [`extras/alacritty`](extras/alacritty/README.md)               |
+| bat                             | [`extras/bat`](extras/bat/README.md)                           |
+| btop                            | [`extras/btop`](extras/btop/README.md)                         |
+| delta                           | [`extras/delta`](extras/delta/README.md)                       |
+| eza                             | [`extras/eza`](extras/eza/README.md)                           |
+| fish                            | [`extras/fish`](extras/fish/README.md)                         |
+| foot                            | [`extras/foot`](extras/foot/README.md)                         |
+| fzf                             | [`extras/fzf`](extras/fzf/README.md)                           |
+| Ghostty                         | [`extras/ghostty`](extras/ghostty/README.md)                   |
+| Helix                           | [`extras/helix`](extras/helix/README.md)                       |
+| iTerm2                          | [`extras/iterm`](extras/iterm/README.md)                       |
+| k9s (plus `_transparent` skins) | [`extras/k9s`](extras/k9s/README.md)                           |
+| kitty                           | [`extras/kitty`](extras/kitty/README.md)                       |
+| lazygit                         | [`extras/lazygit`](extras/lazygit/README.md)                   |
+| st                              | [`extras/st`](extras/st/README.md)                             |
+| Sublime Text (the bat themes)   | [`extras/bat`](extras/bat/README.md)                           |
+| Termux                          | [`extras/termux`](extras/termux/README.md)                     |
+| tmux                            | [`extras/tmux`](extras/tmux/README.md)                         |
+| Vim                             | [`extras/vim`](extras/vim/README.md)                           |
+| WezTerm                         | [`extras/wezterm`](extras/wezterm/README.md)                   |
+| Windows Terminal                | [`extras/windows_terminal`](extras/windows_terminal/README.md) |
+| Xresources                      | [`extras/xresources`](extras/xresources/README.md)             |
+| Yazi                            | [`extras/yazi`](extras/yazi/README.md)                         |
+| zathura                         | [`extras/zathura`](extras/zathura/README.md)                   |
+| Zed                             | [`extras/zed`](extras/zed/README.md)                           |
+| Zellij                          | [`extras/zellij`](extras/zellij/README.md)                     |
+| Zettlr                          | [`extras/zettlr`](extras/zettlr/README.md)                     |
+
+Looking for a font to go with the theme? See the
+**[font guide](extras/fonts/README.md)**.
 
 Regenerate them after changing the palette:
 
